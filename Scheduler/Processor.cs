@@ -6,9 +6,9 @@ namespace Scheduler
     public class Processor
     {
         private SchedulerConfiguration configuration;
-        private List<SchedulerResult> schedulerResults;
+        private SchedulerResult schedulerResult;
 
-        
+
         public Processor(SchedulerConfiguration TheConfiguration)
         {
             this.configuration = TheConfiguration;
@@ -16,81 +16,53 @@ namespace Scheduler
         }
 
 
-        public string GetNextExecution()
+        public SchedulerResult GetNextExecution()
         {
-            if (this.schedulerResults.Count == 0)
+            if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
             {
-                if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
-                {
-                    this.CalculateFirstExecutionOnce();
-                }
-
-                if (this.configuration.PeriodicityType == PeriodicityTypes.Recurring)
-                {
-                    this.CalculateFirstExecutionRecurring();
-                }
+                return this.CalculateNextExecutionOnce();
             }
-            else
-            {
-                if (this.configuration.PeriodicityType == PeriodicityTypes.Recurring)
-                {
-                    this.CalculateNextExecutionRecurring();
-                }
-            }
-
-            return this.schedulerResults == null || this.schedulerResults.Count == 0 ? string.Empty : this.schedulerResults[this.schedulerResults.Count - 1].TextResult;
+            return this.CalculateNextExecutionRecurring();
         }
 
-        private void CalculateFirstExecutionOnce()
+        private SchedulerResult CalculateNextExecutionOnce()
         {
             if (this.configuration.DateTime < this.configuration.CurrentDate)
             {
-                this.schedulerResults.Clear();
+                return null;
             }
 
-            this.schedulerResults.Add(new SchedulerResult(1, this.configuration.DateTime.Value, string.Empty));
+            return new SchedulerResult(this.configuration.DateTime.Value, string.Empty);
         }
 
-        private void CalculateFirstExecutionRecurring()
+        private SchedulerResult CalculateNextExecutionRecurring()
         {
             if (this.configuration.StartDate >= this.configuration.CurrentDate)
             {
-                this.schedulerResults.Add(new SchedulerResult(1, this.configuration.StartDate.Value, string.Empty));
-                return;
+                return new SchedulerResult(this.configuration.StartDate.Value, string.Empty);
             }
 
             TimeSpan DiffDate = this.configuration.CurrentDate - this.configuration.StartDate.Value;
+
             double Units = 0;
             switch (this.configuration.Occurs.Value)
             {
-                case PeriodicityModes.Secondly:
-                    Units = DiffDate.TotalSeconds;
-                    break;
-                case PeriodicityModes.Minutely:
-                    Units = DiffDate.TotalMinutes;
-                    break;
-                case PeriodicityModes.Hourly:
-                    Units = DiffDate.TotalHours;
-                    break;
                 case PeriodicityModes.Daily:
                     Units = DiffDate.TotalDays;
                     break;
                 case PeriodicityModes.Weekly:
                     break;
                 case PeriodicityModes.Monthly:
-                    Units = DiffDate.TotalSeconds;
                     break;
                 case PeriodicityModes.Yearly:
-                    Units = DiffDate.TotalSeconds;
                     break;
                 default:
-                    break;
+                    throw new ApplicationException("Configuración no implementada.");
             }
 
             if (Units % this.configuration.Every == 0)
             {
-                this.schedulerResults.Add(new SchedulerResult(1, this.configuration.CurrentDate, string.Empty));
-                return;
+                return new SchedulerResult(this.configuration.CurrentDate, string.Empty);
             }
 
             Double AddUnits = this.configuration.Every.Value - (Units % this.configuration.Every.Value);
@@ -98,15 +70,6 @@ namespace Scheduler
             DateTime NextDate = DateTime.MaxValue;
             switch (this.configuration.Occurs.Value)
             {
-                case PeriodicityModes.Secondly:
-                    NextDate = this.configuration.CurrentDate.AddSeconds(AddUnits);
-                    break;
-                case PeriodicityModes.Minutely:
-                    NextDate = this.configuration.CurrentDate.AddMinutes(AddUnits);
-                    break;
-                case PeriodicityModes.Hourly:
-                    NextDate = this.configuration.CurrentDate.AddHours(AddUnits);
-                    break;
                 case PeriodicityModes.Daily:
                     NextDate = this.configuration.CurrentDate.AddDays(AddUnits);
                     break;
@@ -117,16 +80,10 @@ namespace Scheduler
                 case PeriodicityModes.Yearly:
                     break;
                 default:
-                    break;
+                    throw new ApplicationException("Configuración no implementada.");
             }
 
-            this.schedulerResults.Add(new SchedulerResult(1, NextDate, string.Empty));
+            return new SchedulerResult(NextDate, string.Empty);
         }
-
-        private void CalculateNextExecutionRecurring()
-        {
-            SchedulerResult LastResult = this.schedulerResults[this.schedulerResults.Count - 1];
-        }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Scheduler.Windows
 {
@@ -31,37 +32,35 @@ namespace Scheduler.Windows
                 this.processor = new Processor(TheConfiguration);
             }
 
-            //try
-            //{
-            this.processor = new Processor(TheConfiguration);
-                this.TbResultado.Text = this.processor.GetNextExecution();
-
-
-
-
-
-
-            //}
-            //catch (ApplicationException exc)
-            //{
-            //    MessageBox.Show(exc.Message + Environment.NewLine + exc.StackTrace);
-            //}
+            try
+            {
+                this.processor = new Processor(TheConfiguration);
+                SchedulerResult TheResult = this.processor.GetNextExecution();
+                this.TbResultado.Text = TheResult.DateTime.ToShortDateString() + " - " + TheResult.Description;
+            }
+            catch (ApplicationException exc)
+            {
+                MessageBox.Show(exc.Message + Environment.NewLine + exc.StackTrace);
+            }
         }
 
         private void InicioFrm_Load(object sender, EventArgs e)
         {
-            //foreach (string CadaItem in (string)Enum.GetValues(typeof(PeriodicityTypes)))
-            //{
-            //    this.CbType.Items.Add(CadaItem);
-            //}
-
-            //foreach (string CadaItem in Enum.GetValues(typeof(PeriodicityModes)))
-            //{
-            //    this.CbOccurs.Items.Add(CadaItem);
-            //}
+            this.LoadComboEnum(this.CbType, typeof(PeriodicityTypes));
+            this.LoadComboEnum(this.CbOccurs, typeof(PeriodicityModes));
 
             this.DtpCurrentDate.Value = DateTime.Now;
             this.DtpStartDate.Value = DateTime.Now;
+        }
+
+        private void LoadComboEnum(ComboBox TheComboBox, Type TheEnumType)
+        {
+            TheComboBox.Items.Clear();
+            foreach (var CadaItem in Enum.GetValues(TheEnumType))
+            {
+                TheComboBox.Items.Add(CadaItem.ToString());
+            }
+            TheComboBox.SelectedIndex = 0;
         }
     }
 }

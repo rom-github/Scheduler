@@ -7,9 +7,6 @@
     }
     public enum PeriodicityModes
     {
-        Secondly,
-        Minutely,
-        Hourly,
         Daily,
         Weekly,
         Monthly,
