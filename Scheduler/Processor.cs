@@ -6,13 +6,11 @@ namespace Scheduler
     public class Processor
     {
         private SchedulerConfiguration configuration;
-        private SchedulerResult schedulerResult;
 
 
         public Processor(SchedulerConfiguration TheConfiguration)
         {
             this.configuration = TheConfiguration;
-            this.schedulerResults = new List<SchedulerResult>();
         }
 
 
@@ -42,17 +40,22 @@ namespace Scheduler
                 return new SchedulerResult(this.configuration.StartDate.Value, string.Empty);
             }
 
-            TimeSpan DiffDate = this.configuration.CurrentDate - this.configuration.StartDate.Value;
+            TimeSpan DiffDate = this.configuration.CurrentDate.Date - this.configuration.StartDate.Value.Date;
 
             double Units = 0;
+            double MyEvery;
             switch (this.configuration.Occurs.Value)
             {
                 case PeriodicityModes.Daily:
-                    Units = DiffDate.TotalDays;
+                    MyEvery = this.configuration.Every.Value;
                     break;
                 case PeriodicityModes.Weekly:
+                    DayOfWeek TheDayOfWeek = this.configuration.StartDate.Value.DayOfWeek;
+                    DateTime MyDate = this.configuration.CurrentDate.
+                    MyEvery = this.configuration.Every.Value * 7;
                     break;
                 case PeriodicityModes.Monthly:
+                    MyEvery = this.configuration.Every.Value * 30;
                     break;
                 case PeriodicityModes.Yearly:
                     break;

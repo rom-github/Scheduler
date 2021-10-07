@@ -24,7 +24,7 @@ namespace Scheduler.Windows
             if (CbType.Text == "Recurring")
             {
                 TheConfiguration.SetRecurring(this.DtpCurrentDate.Value, (PeriodicityModes)Enum.Parse(typeof(PeriodicityModes), this.CbOccurs.Text),
-                    Convert.ToInt32(this.NudEvery.Value), this.DtpDateTime.Value, this.DtpEndDate.Value);
+                    Convert.ToInt32(this.NudEvery.Value), this.DtpStartDate.Value, this.DtpEndDate.Value);
             }
 
             if (this.processor != null)
@@ -36,7 +36,7 @@ namespace Scheduler.Windows
             {
                 this.processor = new Processor(TheConfiguration);
                 SchedulerResult TheResult = this.processor.GetNextExecution();
-                this.TbResultado.Text = TheResult.DateTime.ToShortDateString() + " - " + TheResult.Description;
+                this.TbResultado.Text = TheResult == null ? string.Empty : TheResult.DateTime.ToShortDateString() + " - " + TheResult.Description;
             }
             catch (ApplicationException exc)
             {
@@ -56,9 +56,9 @@ namespace Scheduler.Windows
         private void LoadComboEnum(ComboBox TheComboBox, Type TheEnumType)
         {
             TheComboBox.Items.Clear();
-            foreach (var CadaItem in Enum.GetValues(TheEnumType))
+            foreach (var EachItem in Enum.GetValues(TheEnumType))
             {
-                TheComboBox.Items.Add(CadaItem.ToString());
+                TheComboBox.Items.Add(EachItem.ToString());
             }
             TheComboBox.SelectedIndex = 0;
         }
