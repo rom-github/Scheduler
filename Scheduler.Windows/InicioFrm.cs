@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace Scheduler.Windows
 {
@@ -36,7 +35,7 @@ namespace Scheduler.Windows
             {
                 this.processor = new Processor(TheConfiguration);
                 SchedulerResult TheResult = this.processor.GetNextExecution();
-                this.TbResultado.Text = TheResult == null ? string.Empty : TheResult.DateTime.ToShortDateString() + " - " + TheResult.Description;
+                this.TbResultado.Text = TheResult == null ? string.Empty : TheResult.DateTime.ToShortDateString() + Environment.NewLine + TheResult.Description;
             }
             catch (ApplicationException exc)
             {
@@ -48,9 +47,6 @@ namespace Scheduler.Windows
         {
             this.LoadComboEnum(this.CbType, typeof(PeriodicityTypes));
             this.LoadComboEnum(this.CbOccurs, typeof(PeriodicityModes));
-
-            this.DtpCurrentDate.Value = DateTime.Now;
-            this.DtpStartDate.Value = DateTime.Now;
         }
 
         private void LoadComboEnum(ComboBox TheComboBox, Type TheEnumType)
@@ -61,6 +57,17 @@ namespace Scheduler.Windows
                 TheComboBox.Items.Add(EachItem.ToString());
             }
             TheComboBox.SelectedIndex = 0;
+        }
+
+        private void CbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool IsRecurring = this.CbType.Text == PeriodicityTypes.Recurring.ToString();
+
+            this.DtpDateTime.Enabled = IsRecurring == false;
+            this.CbOccurs.Enabled =
+                this.NudEvery.Enabled =
+                this.DtpStartDate.Enabled =
+                this.DtpEndDate.Enabled = IsRecurring;
         }
     }
 }

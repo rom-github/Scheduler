@@ -25,19 +25,19 @@ namespace Scheduler
 
         private SchedulerResult CalculateNextExecutionOnce()
         {
-            if (this.configuration.DateTime < this.configuration.CurrentDate)
+            if (this.configuration.DateTime.Value.Date < this.configuration.CurrentDate.Date)
             {
                 return null;
             }
 
-            return new SchedulerResult(this.configuration.DateTime.Value, string.Empty);
+            return new SchedulerResult(this.configuration.DateTime.Value, this.GetDescription(this.configuration.DateTime.Value, this.configuration.DateTime.Value));
         }
 
         private SchedulerResult CalculateNextExecutionRecurring()
         {
             if (this.configuration.StartDate >= this.configuration.CurrentDate)
             {
-                return new SchedulerResult(this.configuration.StartDate.Value, string.Empty);
+                return new SchedulerResult(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
             DateTime? TheNextDate;
@@ -68,11 +68,12 @@ namespace Scheduler
                 TheNextDate = null;
             }
 
-            return TheNextDate == null ? null : new SchedulerResult(TheNextDate.Value, string.Empty);
+            return TheNextDate == null ? null : new SchedulerResult(TheNextDate.Value, this.GetDescription(this.configuration.StartDate.Value, TheNextDate.Value));
         }
 
         private DateTime? GetDailyCalculation(DateTime StartDate, DateTime CurrentDate, int Every)
         {
+            // Realizo el cálculo como si Every siempre fuera 1 y después llamo a GetTotalNumberOfDays
             DateTime TheNextDate = CurrentDate.AddDays(1);
             double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, Every);
             return StartDate.AddDays(TotalDays);
@@ -80,7 +81,7 @@ namespace Scheduler
 
         private DateTime? GetWeeklyCalculation(DateTime StartDate, DateTime CurrentDate, int Every)
         {
-            // Realizo el cálculo como si Every siempre fuera 1
+            // Realizo el cálculo como si Every siempre fuera 1 y después llamo a GetTotalNumberOfDays
             DayOfWeek StartDayOfWeek = StartDate.DayOfWeek;
             DayOfWeek CurrentDayOfWeek = CurrentDate.DayOfWeek;
 
@@ -95,6 +96,7 @@ namespace Scheduler
 
         private DateTime? GetMonthlyCalculation(DateTime StartDate, DateTime CurrentDate, int Every)
         {
+            // Realizo el cálculo como si Every siempre fuera 1 y después llamo a GetTotalNumberOfDays
             DateTime TheNextDate = new DateTime(CurrentDate.Year, CurrentDate.Month, StartDate.Day);
             TheNextDate = TheNextDate.AddMonths(1);
             double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, (Every * 30));
@@ -103,6 +105,7 @@ namespace Scheduler
 
         private DateTime? GetYearlyCalculation(DateTime StartDate, DateTime CurrentDate, int Every)
         {
+            // Realizo el cálculo como si Every siempre fuera 1 y después llamo a GetTotalNumberOfDays
             DateTime TheNextDate = new DateTime(CurrentDate.Year, StartDate.Month, StartDate.Day);
             TheNextDate = TheNextDate.AddYears(1);
             double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, (Every * 365));
@@ -117,6 +120,30 @@ namespace Scheduler
             NumberOfPeriods = DaysDiff % DaysOfAPeriod == 0 ? NumberOfPeriods : NumberOfPeriods + 1;
 
             return NumberOfPeriods * DaysOfAPeriod;
+        }
+
+        private string GetDescription(DateTime StartDate, DateTime NextDate)
+        {
+            string ScheduleText = $"Schedule will be used on { NextDate.ToShortDateString() } starting on { StartDate.ToShortDateString() }";
+
+            if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
+            {
+                return "Occurs once. " + ScheduleText;
+            }
+
+            string Type = this.configuration.PeriodicityType == PeriodicityTypes.Once ? "once" : "every " + this.configuration.Every.ToString().Trim();
+
+            string EveryType = this.configuration.Occurs.Value.ToString().ToLower().Substring(0, this.configuration.Occurs.Value.ToString().Length - 2);
+            if (EveryType == "dai")
+            {
+                EveryType = "day";
+            }
+
+            if (this.configuration.Every > 1)
+            {
+                EveryType = this.configuration.Every.ToString().Trim() + " " + EveryType + "s";
+            }
+            return "Occurs every " + EveryType + ". " + ScheduleText;
         }
     }
 }

@@ -79,10 +79,20 @@ namespace Scheduler.Windows
             // NudEvery
             // 
             this.NudEvery.Location = new System.Drawing.Point(276, 157);
+            this.NudEvery.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.NudEvery.Name = "NudEvery";
             this.NudEvery.Size = new System.Drawing.Size(64, 20);
             this.NudEvery.TabIndex = 4;
             this.NudEvery.ThousandsSeparator = true;
+            this.NudEvery.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // CbType
             // 
@@ -94,6 +104,7 @@ namespace Scheduler.Windows
             this.CbType.Name = "CbType";
             this.CbType.Size = new System.Drawing.Size(98, 21);
             this.CbType.TabIndex = 1;
+            this.CbType.SelectedIndexChanged += new System.EventHandler(this.CbType_SelectedIndexChanged);
             // 
             // label1
             // 
