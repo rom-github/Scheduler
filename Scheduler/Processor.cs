@@ -8,11 +8,10 @@ namespace Scheduler
         private SchedulerConfiguration configuration;
 
 
-        public Processor(SchedulerConfiguration TheConfiguration)
+        public Processor(SchedulerConfiguration configuration)
         {
-            this.configuration = TheConfiguration;
+            this.configuration = configuration;
         }
-
 
         public SchedulerResult GetNextExecution()
         {
@@ -40,7 +39,7 @@ namespace Scheduler
                 return new SchedulerResult(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
-            DateTime? TheNextDate;
+            DateTime? TheNextDate = null;
             switch (this.configuration.Occurs.Value)
             {
                 case PeriodicityModes.Daily:
@@ -58,9 +57,6 @@ namespace Scheduler
                 case PeriodicityModes.Yearly:
                     TheNextDate = GetYearlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Every.Value);
                     break;
-
-                default:
-                    throw new ApplicationException("Configuración no implementada.");
             }
 
             if (TheNextDate > this.configuration.EndDate)

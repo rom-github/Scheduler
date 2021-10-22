@@ -8,21 +8,32 @@ namespace Scheduler
         {
         }
 
-        public void SetOnce(DateTime TheCurrentDate, DateTime? TheDateTime)
+        public void SetOnce(DateTime currentDate, DateTime dateTime)
         {
             this.PeriodicityType = PeriodicityTypes.Once;
-            this.CurrentDate = TheCurrentDate;
-            this.DateTime = TheDateTime;
+            this.CurrentDate = currentDate;
+            this.DateTime = dateTime;
         }
 
-        public void SetRecurring(DateTime TheCurrentDate, PeriodicityModes TheOccurs, int TheEvery, DateTime TheStartDate, DateTime? TheEndDate)
+        public void SetRecurring(DateTime currentDate, PeriodicityModes occurs, int every, DateTime startDate, DateTime? endDate)
         {
-            this.CurrentDate = TheCurrentDate;
+            if (every < 1)
+            {
+                throw new ArgumentOutOfRangeException("every", every, "Every must be greater than zero.");
+            }
+
+            if (endDate.HasValue && endDate.Value < startDate)
+            {
+                throw new ArgumentOutOfRangeException("endDate", endDate, "End date must be greater than start date or null.");
+            }
+
+
             this.PeriodicityType = PeriodicityTypes.Recurring;
-            this.Occurs = TheOccurs;
-            this.Every = TheEvery;
-            this.StartDate = TheStartDate;
-            this.EndDate = TheEndDate;
+            this.CurrentDate = currentDate;
+            this.Occurs = occurs;
+            this.Every = every;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
         }
 
         public DateTime CurrentDate { get; private set; }
