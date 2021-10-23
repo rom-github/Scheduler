@@ -6,8 +6,8 @@ namespace Scheduler.Test
     public class SchedulerValidatorShould
     {
         [Theory]
-        [ClassData(typeof(TestSchedulerOnceGenerator))]
-        public void ValidateDateOnce(DateTime currentDate, DateTime date, DateTime? expected)
+        [ClassData(typeof(SchedulerOnceTestGenerator))]
+        public void ValidateOnce(DateTime currentDate, DateTime date, DateTime? expected)
         {
             //Arrange
             SchedulerConfiguration config = new SchedulerConfiguration();
@@ -29,28 +29,52 @@ namespace Scheduler.Test
         }
 
         [Theory]
-        [ClassData(typeof(TestSchedulerRecurringGenerator))]
-        [ClassData(typeof(TestSchedulerRecurringGenerator2))]
-        public void ValidateDateRecurring(DateTime currentDate, PeriodicityModes ocurrs, int every, DateTime startDate, DateTime endDate, DateTime? expected)
+        [ClassData(typeof(SchedulerDailyEvery1RecurringTestGenerator))]
+        [ClassData(typeof(SchedulerDailyEvery3RecurringTestGenerator))]
+        public void ValidateRecurring(TestRecurringConfig config)
         {
             //Arrange
-            SchedulerConfiguration config = new SchedulerConfiguration();
-            config.SetRecurring(currentDate, ocurrs, every, startDate, endDate);
-            Processor Processor = new Processor(config);
+            SchedulerConfiguration schedulerConfig = new SchedulerConfiguration();
+            schedulerConfig.SetRecurring(config.CurrentDate, config.PeriodicityMode, config.Every, config.StartDate, config.EndDate);
+            Processor Processor = new Processor(schedulerConfig);
 
             //Fact
             SchedulerResult schedulerResult = Processor.GetNextExecution();
 
             //Assert
-            if (expected == null)
+            if (config.Expected.HasValue)
             {
-                Assert.Null(schedulerResult);
+                Assert.Equal(schedulerResult.DateTime, config.Expected);
             }
             else
             {
-                Assert.Equal(schedulerResult.DateTime, expected);
+                Assert.Null(schedulerResult);
             }
         }
+
+        //[Theory]
+        //[ClassData(typeof(TestSchedulerRecurringGenerator))]
+        //[ClassData(typeof(TestSchedulerRecurringGenerator2))]
+        //public void ValidateDateRecurring(DateTime currentDate, PeriodicityModes ocurrs, int every, DateTime startDate, DateTime endDate, DateTime? expected)
+        //{
+        //    //Arrange
+        //    SchedulerConfiguration config = new SchedulerConfiguration();
+        //    config.SetRecurring(currentDate, ocurrs, every, startDate, endDate);
+        //    Processor Processor = new Processor(config);
+
+        //    //Fact
+        //    SchedulerResult schedulerResult = Processor.GetNextExecution();
+
+        //    //Assert
+        //    if (expected == null)
+        //    {
+        //        Assert.Null(schedulerResult);
+        //    }
+        //    else
+        //    {
+        //        Assert.Equal(schedulerResult.DateTime, expected);
+        //    }
+        //}
 
         [Fact]
         public void ThrowsExceptionAssertionsOnEveryZero()

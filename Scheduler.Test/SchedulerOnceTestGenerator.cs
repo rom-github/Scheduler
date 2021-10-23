@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Scheduler.Test
 {
-    public class TestSchedulerOnceGenerator : IEnumerable<object[]>
+    public class SchedulerOnceTestGenerator : IEnumerable<object[]>
     {
         private readonly List<object[]> _data = new List<object[]>
         {
