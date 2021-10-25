@@ -31,6 +31,7 @@ namespace Scheduler.Test
         [Theory]
         [ClassData(typeof(SchedulerDailyEvery1RecurringTestGenerator))]
         [ClassData(typeof(SchedulerDailyEvery3RecurringTestGenerator))]
+        [ClassData(typeof(SchedulerDailyEvery100RecurringTestGenerator))]
         public void ValidateRecurring(TestRecurringConfig config)
         {
             //Arrange
@@ -51,30 +52,6 @@ namespace Scheduler.Test
                 Assert.Null(schedulerResult);
             }
         }
-
-        //[Theory]
-        //[ClassData(typeof(TestSchedulerRecurringGenerator))]
-        //[ClassData(typeof(TestSchedulerRecurringGenerator2))]
-        //public void ValidateDateRecurring(DateTime currentDate, PeriodicityModes ocurrs, int every, DateTime startDate, DateTime endDate, DateTime? expected)
-        //{
-        //    //Arrange
-        //    SchedulerConfiguration config = new SchedulerConfiguration();
-        //    config.SetRecurring(currentDate, ocurrs, every, startDate, endDate);
-        //    Processor Processor = new Processor(config);
-
-        //    //Fact
-        //    SchedulerResult schedulerResult = Processor.GetNextExecution();
-
-        //    //Assert
-        //    if (expected == null)
-        //    {
-        //        Assert.Null(schedulerResult);
-        //    }
-        //    else
-        //    {
-        //        Assert.Equal(schedulerResult.DateTime, expected);
-        //    }
-        //}
 
         [Fact]
         public void ThrowsExceptionAssertionsOnEveryZero()

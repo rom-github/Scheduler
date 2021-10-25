@@ -92,17 +92,76 @@ namespace Scheduler.Test
             return _data.GetEnumerator();
         }
     }
-
     public class SchedulerDailyEvery3RecurringTestGenerator : IEnumerable<object[]>
     {
+        static int everyVar = 3;
+
         private readonly List<object[]> _data = new List<object[]>
         {
             new object[]
             { new TestRecurringConfig() {
                     CurrentDate= Convert.ToDateTime("15/06/2000"),
                     PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
+                    Every = everyVar,
                     StartDate = Convert.ToDateTime("15/06/2000"),
+                    EndDate = Convert.ToDateTime("15/06/2000"),
+                    Expected = Convert.ToDateTime("15/06/2000")
+            }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("15/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("15/06/2000") }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("14/06/2000"),
+                    EndDate = Convert.ToDateTime("15/06/2000"),
+                    Expected = (DateTime?)null }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("14/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("17/06/2000") }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("13/06/2000"),
+                    EndDate = Convert.ToDateTime("15/06/2000"),
+                    Expected = (DateTime?)null }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("13/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("16/06/2000") }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("12/06/2000"),
                     EndDate = Convert.ToDateTime("15/06/2000"),
                     Expected = Convert.ToDateTime("15/06/2000") }
             },
@@ -110,100 +169,68 @@ namespace Scheduler.Test
             { new TestRecurringConfig() {
                     CurrentDate= Convert.ToDateTime("15/06/2000"),
                     PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("15/06/2000"),
-                    EndDate = null,
-                    Expected = Convert.ToDateTime("15/06/2000") }
-            },
-
-            new object[]
-            { new TestRecurringConfig() {
-                    CurrentDate= Convert.ToDateTime("15/06/2000"),
-                    PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("16/06/2000"),
-                    EndDate = Convert.ToDateTime("17/06/2000"),
-                    Expected = Convert.ToDateTime("16/06/2000") }
-            },
-            new object[]
-            { new TestRecurringConfig() {
-                    CurrentDate= Convert.ToDateTime("15/06/2000"),
-                    PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("16/06/2000"),
-                    EndDate = null,
-                    Expected = Convert.ToDateTime("16/06/2000") }
-            },
-
-            new object[]
-            { new TestRecurringConfig() {
-                    CurrentDate= Convert.ToDateTime("15/06/2000"),
-                    PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("14/06/2000"),
-                    EndDate = Convert.ToDateTime("16/06/2000"),
-                    Expected = Convert.ToDateTime("15/06/2000") }
-            },
-            new object[]
-            { new TestRecurringConfig() {
-                    CurrentDate= Convert.ToDateTime("15/06/2000"),
-                    PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("14/06/2000"),
-                    EndDate = null,
-                    Expected = Convert.ToDateTime("15/06/2000") }
-            },
-
-            new object[]
-            { new TestRecurringConfig() {
-                    CurrentDate= Convert.ToDateTime("15/06/2000"),
-                    PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
+                    Every = everyVar,
                     StartDate = Convert.ToDateTime("12/06/2000"),
-                    EndDate = Convert.ToDateTime("14/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("15/06/2000") }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("12/06/2000"),
+                    EndDate = Convert.ToDateTime("15/06/2000"),
+                    Expected = Convert.ToDateTime("15/06/2000") }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("12/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("15/06/2000") }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("01/06/2000"),
+                    EndDate = Convert.ToDateTime("12/06/2000"),
                     Expected = (DateTime?)null }
             },
             new object[]
             { new TestRecurringConfig() {
                     CurrentDate= Convert.ToDateTime("15/06/2000"),
                     PeriodicityMode = PeriodicityModes.Daily,
-                    Every = 1,
-                    StartDate = Convert.ToDateTime("12/06/2000"),
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("01/06/2000"),
                     EndDate = null,
-                    Expected = Convert.ToDateTime("15/06/2000") }
+                    Expected = Convert.ToDateTime("16/06/2000")  }
+            },
+
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("21/06/2000"),
+                    EndDate = Convert.ToDateTime("30/06/2000"),
+                    Expected = Convert.ToDateTime("21/06/2000") }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("21/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("21/06/2000") }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //new object[]
-            //{ new TestRecurringConfig() {
-            //        CurrentDate= Convert.ToDateTime("15/06/2000"),
-            //        PeriodicityMode = PeriodicityModes.Daily,
-            //        Every = 3,
-            //        StartDate = Convert.ToDateTime("15/06/2000"),
-            //        EndDate = Convert.ToDateTime("15/06/2000"),
-            //        Expected = Convert.ToDateTime("15/06/2000") }
-            //},
-            //new object[]
-            //{ new TestRecurringConfig() {
-            //        CurrentDate= Convert.ToDateTime("15/06/2000"),
-            //        PeriodicityMode = PeriodicityModes.Daily,
-            //        Every = 3,
-            //        StartDate = Convert.ToDateTime("14/06/2000"),
-            //        EndDate = Convert.ToDateTime("15/06/2000"),
-            //        Expected = (DateTime?)null }
-            //}
         };
 
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
@@ -213,49 +240,86 @@ namespace Scheduler.Test
             return _data.GetEnumerator();
         }
     }
+    public class SchedulerDailyEvery100RecurringTestGenerator : IEnumerable<object[]>
+    {
+        static int everyVar = 100;
 
+        private readonly List<object[]> _data = new List<object[]>
+        {
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("14/06/2000"),
+                    EndDate = Convert.ToDateTime("30/06/2000"),
+                    Expected = (DateTime?)null
+            }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("14/06/2000"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("22/09/2000") }
+            },
 
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("31/07/1998"),
+                    EndDate = Convert.ToDateTime("30/06/2000"),
+                    Expected = Convert.ToDateTime("30/06/2000") }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("31/07/1998"),
+                    EndDate = Convert.ToDateTime("30/06/2000"),
+                    Expected = Convert.ToDateTime("30/06/2000") }
+            },
 
-    //public class TestSchedulerRecurringGenerator : IEnumerable<object[]>
-    //{
-    //    private readonly List<object[]> _data = new List<object[]>
-    //    {
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("31/07/1998"),
+                    EndDate = Convert.ToDateTime("30/06/2000"),
+                    Expected = Convert.ToDateTime("30/06/2000") }
+            },
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("31/07/1998"),
+                    EndDate = null,
+                    Expected = Convert.ToDateTime("30/06/2000") }
+            },
 
+            new object[]
+            { new TestRecurringConfig() {
+                    CurrentDate= Convert.ToDateTime("15/06/2000"),
+                    PeriodicityMode = PeriodicityModes.Daily,
+                    Every = everyVar,
+                    StartDate = Convert.ToDateTime("31/07/1998"),
+                    EndDate = Convert.ToDateTime("29/06/2000"),
+                    Expected = (DateTime?)null }
+            }
+        };
 
-    //        //new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("15/06/2000"), Convert.ToDateTime("15/06/2000"), (DateTime?)null},
-    //        //new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("15/06/2000"), null, Convert.ToDateTime("18/06/2000")},
+        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
-    //        //new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), Convert.ToDateTime("17/06/2000"), (DateTime?)null},
-    //        //new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), null, Convert.ToDateTime("18/06/2000")},
-
-    //        //new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), Convert.ToDateTime("17/06/2000"), (DateTime?)null}
-    //    };
-
-    //    public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
-
-    //    IEnumerator IEnumerable.GetEnumerator()
-    //    {
-    //        return _data.GetEnumerator();
-    //    }
-    //}
-    //public class TestSchedulerRecurringGenerator2 : IEnumerable<object[]>
-    //{
-    //    private readonly List<object[]> _data = new List<object[]>
-    //    {
-    //        new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("15/06/2000"), Convert.ToDateTime("15/06/2000"), (DateTime?)null},
-    //        new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("15/06/2000"), null, Convert.ToDateTime("18/06/2000")},
-
-    //        new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), Convert.ToDateTime("17/06/2000"), (DateTime?)null},
-    //        new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), null, Convert.ToDateTime("18/06/2000")},
-
-    //        new object[] {Convert.ToDateTime("15/06/2000"), PeriodicityModes.Daily, 3, Convert.ToDateTime("16/06/2000"), Convert.ToDateTime("17/06/2000"), (DateTime?)null}
-    //    };
-
-    //    public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
-
-    //    IEnumerator IEnumerable.GetEnumerator()
-    //    {
-    //        return _data.GetEnumerator();
-    //    }
-    //}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _data.GetEnumerator();
+        }
+    }
 }
