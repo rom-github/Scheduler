@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
+    <value>La fecha de fin debe ser mayor o igual que la fecha de comienzo, o nula.</value>
+  </data>
+  <data name="FrecuencyMustBeGreaterThanZero" xml:space="preserve">
+    <value>Every must be greater than zero.</value>
+  </data>
+  <data name="NullConfiguration" xml:space="preserve">
+    <value>No existe configuración.</value>
+  </data>
+  <data name="NullCurrentDate" xml:space="preserve">
+    <value>Debe establecer la propiedad "CurrentDate".</value>
+  </data>
+  <data name="NullEventDate" xml:space="preserve">
+    <value>Debe establecer la propiedad "EventDate".</value>
+  </data>
+  <data name="NullFrecuency" xml:space="preserve">
+    <value>Debe establecer la propiedad "Frecuency".</value>
+  </data>
+  <data name="NullPeriodicityMode" xml:space="preserve">
+    <value>Debe establecer un valor a la propiedad "PeriodicityMode".</value>
+  </data>
+  <data name="NullStartDate" xml:space="preserve">
+    <value>Debe establecer un valor a la propiedad "StartDate".</value>
+  </data>
 </root>

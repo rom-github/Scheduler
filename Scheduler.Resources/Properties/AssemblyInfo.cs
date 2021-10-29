@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Scheduler.Windows")]
+[assembly: AssemblyTitle("Scheduler.Resources")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Scheduler.Windows")]
+[assembly: AssemblyProduct("Scheduler.Resources")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("58a75200-5c48-4750-846c-5e6fe7283a82")]
+[assembly: Guid("5aada28e-3fe6-4594-ab32-98edeb05ebc8")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
