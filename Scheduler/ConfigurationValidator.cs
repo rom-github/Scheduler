@@ -5,7 +5,7 @@ namespace Scheduler
 {
     public class ConfigurationValidator
     {
-        public void Validate(SchedulerConfiguration Configuration)
+        public void Validate(Configuration Configuration)
         {
             this.ValidateCommon(Configuration);
 
@@ -20,7 +20,7 @@ namespace Scheduler
             }
         }
 
-        private void ValidateCommon(SchedulerConfiguration Configuration)
+        private void ValidateCommon(Configuration Configuration)
         {
             if (Configuration == null)
             {
@@ -33,7 +33,7 @@ namespace Scheduler
             }
         }
 
-        private void ValidateOnce(SchedulerConfiguration Configuration)
+        private void ValidateOnce(Configuration Configuration)
         {
             if (Configuration.EventDate == null)
             {
@@ -41,7 +41,7 @@ namespace Scheduler
             }
         }
 
-        private void ValidateRecurring(SchedulerConfiguration Configuration)
+        private void ValidateRecurring(Configuration Configuration)
         {
 
             if (Configuration.PeriodicityMode == null)

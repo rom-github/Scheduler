@@ -10,7 +10,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_All_Dates_Are_Equal_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -27,7 +27,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_All_Dates_Are_Equal_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -45,7 +45,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Tomorrow_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -62,7 +62,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Tomorrow_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -80,7 +80,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -97,7 +97,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Yesterday_With_End_Date_Today()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -115,7 +115,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Yesterday_With_End_Date_On_The_Next_Event_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -133,7 +133,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Several_Days_Before_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -150,7 +150,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Weekly_Every_1_Starts_Several_Days_Before_Yesterday_With_End_Date_Yesterday()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -170,68 +170,67 @@ namespace Scheduler.Test
 
         #region Frecuency 3
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_All_Dates_Are_Equal_Without_End_Date()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Tomorrow_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 6),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 15)
+                StartDate = new DateTime(2000, 6, 7)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.DateTime.Should().Be(new DateTime(2000, 6, 7));
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_All_Dates_Are_Equal_With_End_Date()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Today_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 7),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 15),
-                EndDate = new DateTime(2000, 6, 15)
+                StartDate = new DateTime(2000, 6, 7)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.DateTime.Should().Be(new DateTime(2000, 6, 7));
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Without_End_Date()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Without_End_Date_Today()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 8),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 14)
+                StartDate = new DateTime(2000, 6, 7)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 17));
+            Result.DateTime.Should().Be(new DateTime(2000, 6, 28));
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_With_End_Date_Today()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_With_End_Date_Before_Next_Event_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 8),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 14),
-                EndDate = new DateTime(2000, 6, 15)
+                StartDate = new DateTime(2000, 6, 7),
+                EndDate = new DateTime(2000, 6, 27)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
@@ -240,145 +239,40 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Minus_1_Without_End_Date()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_With_End_Date_The_Next_Event_Day()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 8),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 13)
+                StartDate = new DateTime(2000, 6, 7),
+                EndDate = new DateTime(2000, 6, 28)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
+            Result.DateTime.Should().Be(new DateTime(2000, 6, 28));
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Minus_1_With_End_Date()
+        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_With_End_Date_After_Next_Event_date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
+                CurrentDate = new DateTime(2000, 6, 8),
                 PeriodicityType = PeriodicityTypes.Recurring,
                 PeriodicityMode = PeriodicityModes.Weekly,
                 Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 13),
-                EndDate = new DateTime(2000, 6, 15)
+                StartDate = new DateTime(2000, 6, 7),
+                EndDate = new DateTime(2000, 6, 29)
             };
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.Should().Be(null);
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Minus_2_Without_End_Date()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 12)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Yesterday_Minus_2_With_End_Date()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 12),
-                EndDate = new DateTime(2000, 6, 15)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Too_Long_Ago_Without_End_Date()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 1)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_Too_Long_Ago_With_End_Date_Yesterday_Minus2()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 1),
-                EndDate = new DateTime(2000, 6, 12)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.Should().Be(null);
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_In_The_Future_Without_End_Date()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 21)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 21));
-        }
-
-        [Fact]
-        public void Calculate_Recurring_Weekly_Every_3_Starts_In_The_Future_With_End_Date_In_The_Future()
-        {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
-            {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
-                StartDate = new DateTime(2000, 6, 21),
-                EndDate = new DateTime(2000, 6, 30)
-            };
-
-            var Result = new Processor(configuration).GetNextExecution();
-
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 21));
+            Result.DateTime.Should().Be(new DateTime(2000, 6, 28));
         }
         #endregion
-
     }
 }

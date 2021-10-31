@@ -10,7 +10,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -27,7 +27,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -45,7 +45,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -63,7 +63,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -80,7 +80,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -97,7 +97,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Today()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -115,7 +115,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Tomorrow()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -133,7 +133,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -150,7 +150,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_With_End_Date_Yesterday()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -171,7 +171,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -188,7 +188,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -206,7 +206,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -223,7 +223,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_With_End_Date_Today()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -241,7 +241,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -258,7 +258,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -276,7 +276,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -293,7 +293,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_With_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -311,7 +311,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -328,7 +328,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_With_End_Date_Yesterday_Minus2()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -346,7 +346,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -363,7 +363,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_With_End_Date_In_The_Future()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -385,7 +385,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -402,7 +402,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_With_End_Date_Tomorrow_Plus_15()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -420,7 +420,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Without_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -437,7 +437,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_On_The_Next_Event_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -455,7 +455,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_The_Day_Before_Next_Event_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
                 PeriodicityType = PeriodicityTypes.Recurring,

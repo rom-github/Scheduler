@@ -4,15 +4,15 @@ namespace Scheduler
 {
     public class Processor
     {
-        private SchedulerConfiguration configuration;
+        private Configuration configuration;
 
-        public Processor(SchedulerConfiguration configuration)
+        public Processor(Configuration configuration)
         {
 
             this.configuration = configuration;
         }
 
-        public SchedulerResult GetNextExecution()
+        public Result GetNextExecution()
         {
             new ConfigurationValidator().Validate(this.configuration);
 
@@ -23,21 +23,21 @@ namespace Scheduler
             return this.CalculateNextExecutionRecurring();
         }
 
-        private SchedulerResult CalculateNextExecutionOnce()
+        private Result CalculateNextExecutionOnce()
         {
             if (this.configuration.EventDate.Value.Date < this.configuration.CurrentDate.Date)
             {
                 return null;
             }
 
-            return new SchedulerResult(this.configuration.EventDate.Value, this.GetDescription(this.configuration.EventDate.Value, this.configuration.EventDate.Value));
+            return new Result(this.configuration.EventDate.Value, this.GetDescription(this.configuration.EventDate.Value, this.configuration.EventDate.Value));
         }
 
-        private SchedulerResult CalculateNextExecutionRecurring()
+        private Result CalculateNextExecutionRecurring()
         {
             if (this.configuration.StartDate >= this.configuration.CurrentDate)
             {
-                return new SchedulerResult(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
+                return new Result(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
             DateTime? TheNextDate = null;
@@ -65,7 +65,7 @@ namespace Scheduler
                 TheNextDate = null;
             }
 
-            return TheNextDate == null ? null : new SchedulerResult(TheNextDate.Value, this.GetDescription(this.configuration.StartDate.Value, TheNextDate.Value));
+            return TheNextDate == null ? null : new Result(TheNextDate.Value, this.GetDescription(this.configuration.StartDate.Value, TheNextDate.Value));
         }
 
         private DateTime? GetDailyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)

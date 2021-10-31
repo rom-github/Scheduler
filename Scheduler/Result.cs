@@ -2,9 +2,9 @@
 
 namespace Scheduler
 {
-    public class SchedulerResult
+    public class Result
     {
-        public SchedulerResult(DateTime TheDateTime, string TheDescription)
+        public Result(DateTime TheDateTime, string TheDescription)
         {
             this.DateTime = TheDateTime;
             this.Description = TheDescription;

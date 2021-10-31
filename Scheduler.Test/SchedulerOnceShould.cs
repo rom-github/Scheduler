@@ -9,7 +9,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Once_All_Dates_Are_Equal()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Once,
@@ -24,7 +24,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Once_Current_Date_Greather_Than_Event_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 2),
                 PeriodicityType = PeriodicityTypes.Once,
@@ -39,7 +39,7 @@ namespace Scheduler.Test
         [Fact]
         public void Calculate_Once_Event_Date_Greather_Than_Current_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Once,

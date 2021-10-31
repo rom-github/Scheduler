@@ -18,7 +18,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Null_Current_Date()
         {
-            Processor Processor = new Processor(new SchedulerConfiguration());
+            Processor Processor = new Processor(new Configuration());
 
             Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
         }
@@ -28,7 +28,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Once_Null_EventDate()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Once
@@ -45,7 +45,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Null_Periodicity_Mode()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring
@@ -59,7 +59,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Null_Frecuency()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -74,7 +74,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Frecuency_Zero()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -90,7 +90,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Negative_Frecuency()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -106,7 +106,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Null_Start_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring,
@@ -122,7 +122,7 @@ namespace Scheduler.Test
         [Fact]
         public void Throws_Exception_On_Start_Date_Greather_Than_End_Date()
         {
-            SchedulerConfiguration configuration = new SchedulerConfiguration()
+            Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
                 PeriodicityType = PeriodicityTypes.Recurring,

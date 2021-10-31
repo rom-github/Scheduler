@@ -2,7 +2,7 @@
 
 namespace Scheduler
 {
-    public class SchedulerConfiguration
+    public class Configuration
     {
         public DateTime CurrentDate { get; set; }
 
