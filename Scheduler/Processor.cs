@@ -71,7 +71,7 @@ namespace Scheduler
         private DateTime? GetDailyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         {
             return this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency);
-            // Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
+            //// Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
             //DateTime TheNextDate = CurrentDate.AddDays(1);
             //double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, Frecuency);
             //return StartDate.AddDays(TotalDays);
@@ -146,19 +146,26 @@ namespace Scheduler
         }
 
 
-        private DateTime GetGeneralCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
+        private DateTime? GetGeneralCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         {
             double CompletePeriodsFromStartToCurrent = (CurrentDate.Date - StartDate.Date).TotalDays / Frecuency;
 
-            if (CompletePeriodsFromStartToCurrent < 1)
+            try
             {
-                return StartDate.AddDays(Frecuency);
-            }
+                if (CompletePeriodsFromStartToCurrent < 1)
+                {
+                    return StartDate.AddDays(Frecuency);
+                }
 
-            DateTime LastExecution = StartDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
-            return LastExecution == CurrentDate
-                ? CurrentDate
-                : LastExecution.AddDays(Frecuency);
+                DateTime LastExecution = StartDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
+                return LastExecution == CurrentDate
+                    ? CurrentDate
+                    : LastExecution.AddDays(Frecuency);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return null;
+            }
         }
     }
 }

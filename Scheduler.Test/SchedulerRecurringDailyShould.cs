@@ -377,6 +377,23 @@ namespace Scheduler.Test
 
             Result.DateTime.Should().Be(new DateTime(2000, 6, 21));
         }
+
+        [Fact]
+        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date_CurrentDate_MaxValue()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = DateTime.MaxValue,
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Daily,
+                Frecuency = 3,
+                StartDate = DateTime.MaxValue.AddDays(-1)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
         #endregion
 
 
