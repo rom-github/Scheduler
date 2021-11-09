@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Scheduler.Test
 {
-    public class SchedulerRecurringWeeklyShould
+    public class SchedulerRecurringWeeklyDaysShould
     {
         #region Frecuency 1
         [Fact]

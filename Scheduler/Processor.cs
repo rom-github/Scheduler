@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Scheduler
 {
@@ -47,9 +48,9 @@ namespace Scheduler
                     TheNextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
                     break;
 
-                //case PeriodicityModes.Weekly:
-                //    TheNextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
-                //    break;
+                case PeriodicityModes.Weekly:
+                    TheNextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    break;
 
                 //case PeriodicityModes.Monthly:
                 //    TheNextDate = GetMonthlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
@@ -71,27 +72,33 @@ namespace Scheduler
         private DateTime? GetDailyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         {
             return this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency);
-            //// Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
-            //DateTime TheNextDate = CurrentDate.AddDays(1);
-            //double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, Frecuency);
-            //return StartDate.AddDays(TotalDays);
         }
 
-        //private DateTime? GetWeeklyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
-        //{
-        //    return this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency * 7);
-        //    //// Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
-        //    //DayOfWeek StartDayOfWeek = StartDate.DayOfWeek;
-        //    //DayOfWeek CurrentDayOfWeek = CurrentDate.DayOfWeek;
+        private DateTime? GetWeeklyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
+        {
+            DateTime? WeekEventDate = this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency * 7);
 
-        //    //int DaysToAdd = StartDayOfWeek <= CurrentDayOfWeek
-        //    //    ? 7 - (CurrentDayOfWeek - StartDayOfWeek)
-        //    //    : StartDayOfWeek - CurrentDayOfWeek;
+            if (WeekEventDate.HasValue == false || this.configuration.DaysOfWeek.Length == 0)
+            {
+                return WeekEventDate;
+            }
 
-        //    //DateTime TheNextDate = CurrentDate.AddDays(DaysToAdd);
-        //    //double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, (Frecuency * 7));
-        //    //return StartDate.AddDays(TotalDays);
-        //}
+            DateTime FirstDayOfWeek = WeekEventDate.Value.AddDays(-(int)WeekEventDate.Value.DayOfWeek);
+
+            if (FirstDayOfWeek > this.configuration.CurrentDate.Value)
+            {
+                FirstDayOfWeek = this.configuration.CurrentDate.Value;
+            }
+
+            for (DateTime i = FirstDayOfWeek; i < FirstDayOfWeek.AddDays(13); i.AddDays(1))
+            {
+                if (this.configuration.DaysOfWeek.Contains<DayOfWeek>(i.DayOfWeek) && i >= this.configuration.CurrentDate.Value)
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
 
         //private DateTime? GetMonthlyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         //{

@@ -17,5 +17,15 @@ namespace Scheduler
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public DailyFrecuencyTypes? DailyFrecuencyType { get; set; }
+        
+        public int? EveryDailyFrecuencyType { get; set; }
+
+        public TimeSpan? StartHour { get; set; }
+
+        public TimeSpan? EndHour { get; set; }
+
+        public DayOfWeek[] DaysOfWeek;
     }
 }

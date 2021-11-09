@@ -7,9 +7,16 @@
     }
     public enum PeriodicityModes
     {
-        Daily
-        //Weekly,
+        Daily,
+        Weekly
         //Monthly,
         //Yearly
     }
+
+    public enum DailyFrecuencyTypes
+    { 
+        Hour,
+        Minute,
+        Second
+    }    
 }
