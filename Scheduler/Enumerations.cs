@@ -7,9 +7,9 @@
     }
     public enum PeriodicityModes
     {
-        Daily,
-        Weekly,
-        Monthly,
-        Yearly
+        Daily
+        //Weekly,
+        //Monthly,
+        //Yearly
     }
 }

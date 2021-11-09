@@ -4,7 +4,7 @@ namespace Scheduler
 {
     public class Configuration
     {
-        public DateTime CurrentDate { get; set; }
+        public DateTime? CurrentDate { get; set; }
 
         public PeriodicityTypes PeriodicityType { get; set; }
 

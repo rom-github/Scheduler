@@ -64,7 +64,7 @@ namespace Scheduler
                 throw new ArgumentNullException(ExceptionsTexts.NullStartDate);
             }
 
-            if (Configuration.EndDate.HasValue && Configuration.EndDate.Value < Configuration.StartDate)
+            if (Configuration.EndDate.HasValue && Configuration.EndDate.Value < Configuration.StartDate.Value)
             {
                 throw new ArgumentOutOfRangeException("EndDate", Configuration.EndDate, ExceptionsTexts.EndDateMustBeGreaterThanStartDate);
             }
