@@ -13,7 +13,7 @@ namespace Scheduler
             this.configuration = configuration;
         }
 
-        public Result GetNextExecution()
+        public Result? GetNextExecution()
         {
             new ConfigurationValidator().Validate(this.configuration);
 
@@ -24,7 +24,7 @@ namespace Scheduler
             return this.CalculateNextExecutionRecurring();
         }
 
-        private Result CalculateNextExecutionOnce()
+        private Result? CalculateNextExecutionOnce()
         {
             if (this.configuration.EventDate.Value.Date < this.configuration.CurrentDate.Value.Date)
             {
@@ -34,51 +34,56 @@ namespace Scheduler
             return new Result(this.configuration.EventDate.Value, this.GetDescription(this.configuration.EventDate.Value, this.configuration.EventDate.Value));
         }
 
-        private Result CalculateNextExecutionRecurring()
+        private Result? CalculateNextExecutionRecurring()
         {
             if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value)
             {
                 return new Result(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
-            DateTime? TheNextDate = null;
+            DateTime? NextDate = null;
             switch (this.configuration.PeriodicityMode.Value)
             {
                 case PeriodicityModes.Daily:
-                    TheNextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    NextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
                     break;
 
                 case PeriodicityModes.Weekly:
-                    TheNextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    NextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
                     break;
 
                 //case PeriodicityModes.Monthly:
-                //    TheNextDate = GetMonthlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
+                //    NextDate = GetMonthlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
                 //    break;
 
                 //case PeriodicityModes.Yearly:
-                //    TheNextDate = GetYearlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
+                //    NextDate = GetYearlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
                 //    break;
             }
 
-            if (TheNextDate > this.configuration.EndDate)
+            if (NextDate > this.configuration.EndDate)
             {
-                TheNextDate = null;
+                NextDate = null;
             }
 
-            return TheNextDate == null ? null : new Result(TheNextDate.Value, this.GetDescription(this.configuration.StartDate.Value, TheNextDate.Value));
+            if (NextDate == null)
+            {
+                return null;
+            }
+
+            return new Result(NextDate.Value, this.GetDescription(this.configuration.StartDate.Value, NextDate.Value));
         }
 
-        private DateTime? GetDailyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
+        private DateTime? GetDailyCalculation(DateTime startDate, DateTime currentDate, int frecuency)
         {
-            return this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency);
+            return this.GetGeneralCalculation(startDate, currentDate, frecuency);
         }
 
-        private DateTime? GetWeeklyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
+        private DateTime? GetWeeklyCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
         {
-            DateTime? WeekEventDate = this.GetGeneralCalculation(StartDate, CurrentDate, Frecuency * 7);
+            DateTime? WeekEventDate = this.GetGeneralCalculation(startDate, currentDate, Frecuency * 7);
 
-            if (WeekEventDate.HasValue == false || this.configuration.DaysOfWeek.Length == 0)
+            if (WeekEventDate.HasValue == false || this.configuration.DaysOfWeek == null || this.configuration.DaysOfWeek.Length == 0)
             {
                 return WeekEventDate;
             }
@@ -103,18 +108,18 @@ namespace Scheduler
         //private DateTime? GetMonthlyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         //{
         //    // Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
-        //    DateTime TheNextDate = new DateTime(CurrentDate.Year, CurrentDate.Month, StartDate.Day);
-        //    TheNextDate = TheNextDate.AddMonths(1);
-        //    double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, (Frecuency * 30));
+        //    DateTime NextDate = new DateTime(CurrentDate.Year, CurrentDate.Month, StartDate.Day);
+        //    NextDate = NextDate.AddMonths(1);
+        //    double TotalDays = this.GetTotalNumberOfDays(StartDate, NextDate, (Frecuency * 30));
         //    return StartDate.AddDays(TotalDays);
         //}
 
         //private DateTime? GetYearlyCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
         //{
         //    // Realizo el cálculo como si Frecuency siempre fuera 1 y después llamo a GetTotalNumberOfDays
-        //    DateTime TheNextDate = new DateTime(CurrentDate.Year, StartDate.Month, StartDate.Day);
-        //    TheNextDate = TheNextDate.AddYears(1);
-        //    double TotalDays = this.GetTotalNumberOfDays(StartDate, TheNextDate, (Frecuency * 365));
+        //    DateTime NextDate = new DateTime(CurrentDate.Year, StartDate.Month, StartDate.Day);
+        //    NextDate = NextDate.AddYears(1);
+        //    double TotalDays = this.GetTotalNumberOfDays(StartDate, NextDate, (Frecuency * 365));
         //    return StartDate.AddDays(TotalDays);
         //}
 
@@ -128,9 +133,9 @@ namespace Scheduler
         //    return NumberOfPeriods * DaysOfAPeriod;
         //}
 
-        private string GetDescription(DateTime StartDate, DateTime NextDate)
+        private string GetDescription(DateTime startDate, DateTime nextDate)
         {
-            string ScheduleText = $"Schedule will be used on { NextDate.ToShortDateString() } starting on { StartDate.ToShortDateString() }";
+            string ScheduleText = $"Schedule will be used on { nextDate.ToShortDateString() } starting on { startDate.ToShortDateString() }";
 
             if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
             {
@@ -151,20 +156,20 @@ namespace Scheduler
         }
 
 
-        private DateTime? GetGeneralCalculation(DateTime StartDate, DateTime CurrentDate, int Frecuency)
+        private DateTime? GetGeneralCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
         {
-            double CompletePeriodsFromStartToCurrent = (CurrentDate.Date - StartDate.Date).TotalDays / Frecuency;
+            double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalDays / Frecuency;
 
             try
             {
                 if (CompletePeriodsFromStartToCurrent < 1)
                 {
-                    return StartDate.AddDays(Frecuency);
+                    return startDate.AddDays(Frecuency);
                 }
 
-                DateTime LastExecution = StartDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
-                return LastExecution == CurrentDate
-                    ? CurrentDate
+                DateTime LastExecution = startDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
+                return LastExecution == currentDate
+                    ? currentDate
                     : LastExecution.AddDays(Frecuency);
             }
             catch (ArgumentOutOfRangeException)

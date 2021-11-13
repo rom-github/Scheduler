@@ -5,68 +5,68 @@ namespace Scheduler
 {
     public class ConfigurationValidator
     {
-        public void Validate(Configuration Configuration)
+        public void Validate(Configuration configuration)
         {
-            this.ValidateCommon(Configuration);
+            this.ValidateCommon(configuration);
 
-            if (Configuration.PeriodicityType == PeriodicityTypes.Once)
+            if (configuration.PeriodicityType == PeriodicityTypes.Once)
             {
-                this.ValidateOnce(Configuration);
+                this.ValidateOnce(configuration);
             }
 
-            if (Configuration.PeriodicityType == PeriodicityTypes.Recurring)
+            if (configuration.PeriodicityType == PeriodicityTypes.Recurring)
             {
-                this.ValidateRecurring(Configuration);
+                this.ValidateRecurring(configuration);
             }
         }
 
-        private void ValidateCommon(Configuration Configuration)
+        private void ValidateCommon(Configuration configuration)
         {
-            if (Configuration == null)
+            if (configuration == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullConfiguration);
             }
 
-            if (Configuration.CurrentDate == null)
+            if (configuration.CurrentDate == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullCurrentDate);
             }
         }
 
-        private void ValidateOnce(Configuration Configuration)
+        private void ValidateOnce(Configuration configuration)
         {
-            if (Configuration.EventDate == null)
+            if (configuration.EventDate == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullEventDate);
             }
         }
 
-        private void ValidateRecurring(Configuration Configuration)
+        private void ValidateRecurring(Configuration configuration)
         {
 
-            if (Configuration.PeriodicityMode == null)
+            if (configuration.PeriodicityMode == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullPeriodicityMode);
             }
 
-            if (Configuration.Frecuency == null)
+            if (configuration.Frecuency == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullFrecuency);
             }
 
-            if (Configuration.Frecuency < 1)
+            if (configuration.Frecuency < 1)
             {
-                throw new ArgumentOutOfRangeException("Frecuency", Configuration.Frecuency, ExceptionsTexts.FrecuencyMustBeGreaterThanZero);
+                throw new ArgumentOutOfRangeException("Frecuency", configuration.Frecuency, ExceptionsTexts.FrecuencyMustBeGreaterThanZero);
             }
 
-            if (Configuration.StartDate == null)
+            if (configuration.StartDate == null)
             {
                 throw new ArgumentNullException(ExceptionsTexts.NullStartDate);
             }
 
-            if (Configuration.EndDate.HasValue && Configuration.EndDate.Value < Configuration.StartDate.Value)
+            if (configuration.EndDate.HasValue && configuration.EndDate.Value < configuration.StartDate.Value)
             {
-                throw new ArgumentOutOfRangeException("EndDate", Configuration.EndDate, ExceptionsTexts.EndDateMustBeGreaterThanStartDate);
+                throw new ArgumentOutOfRangeException("EndDate", configuration.EndDate, ExceptionsTexts.EndDateMustBeGreaterThanStartDate);
             }
         }
     }

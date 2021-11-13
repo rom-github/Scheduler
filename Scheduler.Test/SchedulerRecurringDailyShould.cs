@@ -21,7 +21,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -144,7 +144,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -182,7 +182,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -200,7 +200,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -217,7 +217,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 17));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 17));
         }
 
         [Fact]
@@ -252,7 +252,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
         }
 
         [Fact]
@@ -287,7 +287,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -305,7 +305,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 15));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
         }
 
         [Fact]
@@ -322,7 +322,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 16));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
         }
 
         [Fact]
@@ -357,7 +357,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 21));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 21));
         }
 
         [Fact]
@@ -375,7 +375,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 21));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 21));
         }
 
         [Fact]
@@ -413,7 +413,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 9, 22));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 9, 22));
         }
 
         [Fact]
@@ -448,7 +448,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 30));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 30));
         }
 
         [Fact]
@@ -466,7 +466,7 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 6, 30));
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 30));
         }
 
         [Fact]

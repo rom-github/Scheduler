@@ -18,8 +18,8 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 1, 1));
-            Assert.Equal("Occurs once. Schedule will be used on 01/01/2000 starting on 01/01/2000", Result.Description);
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 1));
+            Assert.Equal("Occurs once. Schedule will be used on 01/01/2000 starting on 01/01/2000", Result.Value.Description);
         }
 
         [Fact]
@@ -49,8 +49,8 @@ namespace Scheduler.Test
 
             var Result = new Processor(configuration).GetNextExecution();
 
-            Result.DateTime.Should().Be(new DateTime(2000, 1, 2));
-            Assert.Equal("Occurs once. Schedule will be used on 02/01/2000 starting on 02/01/2000", Result.Description);
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 2));
+            Assert.Equal("Occurs once. Schedule will be used on 02/01/2000 starting on 02/01/2000", Result.Value.Description);
         }
     }
 }
