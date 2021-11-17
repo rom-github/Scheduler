@@ -9,7 +9,6 @@ namespace Scheduler
 
         public Processor(Configuration configuration)
         {
-
             this.configuration = configuration;
         }
 
@@ -36,20 +35,22 @@ namespace Scheduler
 
         private Result? CalculateNextExecutionRecurring()
         {
-            if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value)
+            if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value
+                &&
+                (this.configuration.PeriodicityMode != PeriodicityModes.Weekly || this.configuration.DaysOfWeek == null))
             {
                 return new Result(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
-            DateTime? NextDate = null;
+            DateTime? nextDate = null;
             switch (this.configuration.PeriodicityMode.Value)
             {
                 case PeriodicityModes.Daily:
-                    NextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
                     break;
 
                 case PeriodicityModes.Weekly:
-                    NextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    nextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
                     break;
 
                 //case PeriodicityModes.Monthly:
@@ -61,41 +62,46 @@ namespace Scheduler
                 //    break;
             }
 
-            if (NextDate > this.configuration.EndDate)
+            if (nextDate > this.configuration.EndDate)
             {
-                NextDate = null;
+                nextDate = null;
             }
 
-            if (NextDate == null)
+            if (nextDate == null)
             {
                 return null;
             }
 
-            return new Result(NextDate.Value, this.GetDescription(this.configuration.StartDate.Value, NextDate.Value));
+            return new Result(nextDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextDate.Value));
         }
 
         private DateTime? GetDailyCalculation(DateTime startDate, DateTime currentDate, int frecuency)
         {
+            if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value)
+            {
+                return this.configuration.StartDate.Value;
+            }
+
             return this.GetGeneralCalculation(startDate, currentDate, frecuency);
         }
 
         private DateTime? GetWeeklyCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
         {
-            DateTime? WeekEventDate = this.GetGeneralCalculation(startDate, currentDate, Frecuency * 7);
+            DateTime? eventDate = GetDailyCalculation(startDate, currentDate, Frecuency * 7);
 
-            if (WeekEventDate.HasValue == false || this.configuration.DaysOfWeek == null || this.configuration.DaysOfWeek.Length == 0)
+            if (eventDate.HasValue == false || this.configuration.DaysOfWeek == null || this.configuration.DaysOfWeek.Length == 0)
             {
-                return WeekEventDate;
+                return eventDate;
             }
 
-            DateTime FirstDayOfWeek = WeekEventDate.Value.AddDays(-(int)WeekEventDate.Value.DayOfWeek);
+            DateTime? firstDayOfWeekEventDate = eventDate.Value.AddDays(-(int)eventDate.Value.DayOfWeek);
 
-            if (FirstDayOfWeek > this.configuration.CurrentDate.Value)
-            {
-                FirstDayOfWeek = this.configuration.CurrentDate.Value;
-            }
+            //if (firstDayOfWeekEventDate > this.configuration.CurrentDate.Value)
+            //{
+            //    firstDayOfWeekEventDate = this.configuration.CurrentDate.Value;
+            //}
 
-            for (DateTime i = FirstDayOfWeek; i < FirstDayOfWeek.AddDays(13); i.AddDays(1))
+            for (DateTime i = firstDayOfWeekEventDate.Value; i < firstDayOfWeekEventDate.Value.AddDays(13); i = i.AddDays(1))
             {
                 if (this.configuration.DaysOfWeek.Contains<DayOfWeek>(i.DayOfWeek) && i >= this.configuration.CurrentDate.Value)
                 {

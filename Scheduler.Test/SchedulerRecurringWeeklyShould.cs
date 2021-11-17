@@ -166,8 +166,6 @@ namespace Scheduler.Test
         }
         #endregion
 
-
-
         #region Frecuency 3
         [Fact]
         public void Calculate_Recurring_Weekly_Every_3_Starts_Tomorrow_Without_End_Date()
