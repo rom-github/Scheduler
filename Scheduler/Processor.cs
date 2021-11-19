@@ -46,11 +46,11 @@ namespace Scheduler
             switch (this.configuration.PeriodicityMode.Value)
             {
                 case PeriodicityModes.Daily:
-                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    nextDate = GetDailyCalculation();
                     break;
 
                 case PeriodicityModes.Weekly:
-                    nextDate = GetWeeklyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                    nextDate = GetWeeklyCalculation();
                     break;
 
                 //case PeriodicityModes.Monthly:
@@ -75,19 +75,19 @@ namespace Scheduler
             return new Result(nextDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextDate.Value));
         }
 
-        private DateTime? GetDailyCalculation(DateTime startDate, DateTime currentDate, int frecuency)
+        private DateTime? GetDailyCalculation()
         {
             if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value)
             {
                 return this.configuration.StartDate.Value;
             }
 
-            return this.GetGeneralCalculation(startDate, currentDate, frecuency);
+            return this.GetGeneralCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
         }
 
-        private DateTime? GetWeeklyCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
+        private DateTime? GetWeeklyCalculation()
         {
-            DateTime? eventDate = GetDailyCalculation(startDate, currentDate, Frecuency * 7);
+            DateTime? eventDate = this.GetGeneralCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value * 7);
 
             if (eventDate.HasValue == false || this.configuration.DaysOfWeek == null || this.configuration.DaysOfWeek.Length == 0)
             {
