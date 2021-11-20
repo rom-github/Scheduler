@@ -86,40 +86,59 @@ namespace Scheduler
         {
             DateTime? eventDate = this.GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value * 7);
 
-            if (this.configuration.DaysOfWeek == null || this.configuration.DaysOfWeek.Length == 0)
+            if (this.configuration.DaysOfWeek != null && this.configuration.DaysOfWeek.Length > 0)
             {
-                return eventDate;
+                return GetWeeklyDaysCalculation(eventDate);
             }
 
-            DateTime firstDayOfWeekStartDate = this.configuration.StartDate.Value.FirsDayOfWeek();
-            DateTime firstDayOfWeekCurrentDay = this.configuration.CurrentDate.Value.FirsDayOfWeek();
+            return eventDate;
+        }
 
-            DateTime? fakeEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate, firstDayOfWeekCurrentDay, this.configuration.Frecuency.Value * 7);
+        private DateTime? GetWeeklyDaysCalculation(DateTime? eventDate)
+        {
+            DateTime? firstDayOfWeekStartDate = this.configuration.StartDate.Value.FirsDayOfWeek();
+            DateTime? firstDayOfWeekCurrentDay = this.configuration.CurrentDate.Value.FirsDayOfWeek();
 
-            if (fakeEventDate.Value == firstDayOfWeekCurrentDay)
+            DateTime? firstDayOfWeekEventDate = null;
+            if (firstDayOfWeekStartDate.HasValue && firstDayOfWeekCurrentDay.HasValue)
             {
-                if (this.configuration.CurrentDate.Value.DayOfWeek <= this.configuration.DaysOfWeek.Max())
+                firstDayOfWeekEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate.Value, firstDayOfWeekCurrentDay.Value, this.configuration.Frecuency.Value * 7);
+            }
+
+            if (eventDate.HasValue)
+            {
+                if (firstDayOfWeekEventDate.HasValue && firstDayOfWeekCurrentDay.HasValue &&
+                    firstDayOfWeekEventDate.Value == firstDayOfWeekCurrentDay.Value)
                 {
-                    return LocalizeNextDayOfWeekEvent(this.configuration.CurrentDate.Value.FirsDayOfWeek());
+                    return this.configuration.CurrentDate.Value.DayOfWeek <= this.configuration.DaysOfWeek.Max()
+                        ? GetNextEventDateInAWeek(this.configuration.CurrentDate.Value.FirsDayOfWeek())
+                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddDaysNullable(this.configuration.Frecuency.Value * 7));
                 }
                 else
                 {
-                    return LocalizeNextDayOfWeekEvent(firstDayOfWeekCurrentDay.AddDays(this.configuration.Frecuency.Value * 7));
+                    firstDayOfWeekEventDate = eventDate.Value.FirsDayOfWeek().HasValue
+                        ? eventDate.Value.FirsDayOfWeek().Value
+                        : new DateTime(1, 1, 1);
+
+                    return GetNextEventDateInAWeek(firstDayOfWeekEventDate);
                 }
             }
             else
             {
-                return LocalizeNextDayOfWeekEvent(eventDate.Value.FirsDayOfWeek());
+                return firstDayOfWeekEventDate.HasValue
+                    ? GetNextEventDateInAWeek(firstDayOfWeekEventDate)
+                    : null;
             }
         }
 
-        private DateTime LocalizeNextDayOfWeekEvent(DateTime firstDayOfWeekEventDate)
+        private DateTime? GetNextEventDateInAWeek(DateTime? firstDayOfWeekEventDate)
         {
-            while (this.configuration.DaysOfWeek.Contains(firstDayOfWeekEventDate.DayOfWeek) == false ||
-                firstDayOfWeekEventDate < this.configuration.CurrentDate.Value)
+            while (firstDayOfWeekEventDate.HasValue &&
+                (this.configuration.DaysOfWeek.Contains(firstDayOfWeekEventDate.Value.DayOfWeek) == false ||
+                firstDayOfWeekEventDate < this.configuration.CurrentDate.Value))
 
             {
-                firstDayOfWeekEventDate = firstDayOfWeekEventDate.AddDays(1);
+                firstDayOfWeekEventDate = firstDayOfWeekEventDate.Value.AddDaysNullable(1);
             }
 
             return firstDayOfWeekEventDate;
@@ -153,6 +172,22 @@ namespace Scheduler
         //    return NumberOfPeriods * DaysOfAPeriod;
         //}
 
+
+        private DateTime? GetGeneralCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
+        {
+            double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalDays / Frecuency;
+
+            if (CompletePeriodsFromStartToCurrent < 1)
+            {
+                return startDate.AddDaysNullable(Frecuency);
+            }
+
+            DateTime LastExecution = startDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
+            return LastExecution == currentDate
+                ? currentDate
+                : LastExecution.AddDaysNullable(Frecuency);
+        }
+
         private string GetDescription(DateTime startDate, DateTime nextDate)
         {
             string ScheduleText = $"Schedule will be used on { nextDate.ToShortDateString() } starting on { startDate.ToShortDateString() }";
@@ -173,30 +208,6 @@ namespace Scheduler
                 EveryType = this.configuration.Frecuency.ToString().Trim() + " " + EveryType + "s";
             }
             return "Occurs every " + EveryType + ". " + ScheduleText;
-        }
-
-
-        private DateTime? GetGeneralCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
-        {
-            double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalDays / Frecuency;
-
-            try
-            {
-                if (CompletePeriodsFromStartToCurrent < 1)
-                {
-
-                    return startDate.AddDays(Frecuency);
-                }
-
-                DateTime LastExecution = startDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
-                return LastExecution == currentDate
-                    ? currentDate
-                    : LastExecution.AddDays(Frecuency);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return null;
-            }
         }
     }
 }

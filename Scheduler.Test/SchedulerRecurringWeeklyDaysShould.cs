@@ -621,9 +621,9 @@ namespace Scheduler.Test
         }
         #endregion
 
-        #region CALCULATE EXTREME CASES
+        #region CALCULATE EXTREME CASES WITH DateTime.MaxValue
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_39_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        public void Calculate_Recurring_Weekly_TueFri_Every_3_All_Dates_Are_Saturday_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -635,11 +635,13 @@ namespace Scheduler.Test
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Processor(configuration).GetNextExecution());
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_38_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        public void Calculate_Recurring_Weekly_TueFri_Every_2_All_Dates_Are_Saturday_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -658,7 +660,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_37_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        public void Calculate_Recurring_Weekly_TueFri_Every_2_Starting_On_Saturday_CurrentDate_Is_Next_Monday()
         {
             Configuration configuration = new Configuration()
             {
@@ -675,6 +677,83 @@ namespace Scheduler.Test
             Result.Value.DateTime.Should().Be(new DateTime(9999, 12, 28));
             Assert.Equal("Occurs every 2 weeks. Schedule will be used on 28/12/9999 starting on 18/12/9999", Result.Value.Description);
         }
+
+        [Fact]
+        public void Calculate_Recurring_Weekly_TueFri_Every_22_All_Dates_Are_Close_To_MaxDate()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 19),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 22,
+                StartDate = new DateTime(9999, 12, 18),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
+
+        [Fact]
+        public void Calculate_Recurring_Weekly_Sat_Every_1_All_Dates_Are_Close_To_MaxDate()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 28),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 1,
+                StartDate = new DateTime(9999, 12, 28),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Saturday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
         #endregion
+
+        #region CALCULATE EXTREME CASES WITH DateTime.MinValue
+        [Fact]
+        public void Calculate_Recurring_Weekly_TueFri_Every_1_All_Dates_Are_DateTime_MinValue()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(1, 1, 1),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 1,
+                StartDate = new DateTime(1, 1, 1),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(1, 1, 2));
+            Assert.Equal("Occurs every week. Schedule will be used on 02/01/0001 starting on 01/01/0001", Result.Value.Description);
+        }
+
+        [Fact]
+        public void Calculate_Recurring_Weekly_Sun_Every_1_All_Dates_Are_DateTime_MinValue()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(1, 1, 1),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 1,
+                StartDate = new DateTime(1, 1, 1),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(1, 1, 7));
+            Assert.Equal("Occurs every week. Schedule will be used on 07/01/0001 starting on 01/01/0001", Result.Value.Description);
+        }
+
+       #endregion
     }
 }
