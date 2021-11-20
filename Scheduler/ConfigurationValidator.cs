@@ -1,5 +1,4 @@
-﻿using Scheduler.Resources;
-using System;
+﻿using System;
 
 namespace Scheduler
 {
@@ -24,12 +23,12 @@ namespace Scheduler
         {
             if (configuration == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullConfiguration);
+                throw new ArgumentNullException(Messages.Null_Configuration);
             }
 
             if (configuration.CurrentDate == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullCurrentDate);
+                throw new ArgumentNullException(Messages.Null_CurrentDate);
             }
         }
 
@@ -37,7 +36,7 @@ namespace Scheduler
         {
             if (configuration.EventDate == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullEventDate);
+                throw new ArgumentNullException(Messages.Null_EventDate);
             }
         }
 
@@ -46,27 +45,27 @@ namespace Scheduler
 
             if (configuration.PeriodicityMode == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullPeriodicityMode);
+                throw new ArgumentNullException(Messages.Null_Periodicity_Mode);
             }
 
             if (configuration.Frecuency == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullFrecuency);
+                throw new ArgumentNullException(Messages.Null_Frecuency);
             }
 
             if (configuration.Frecuency < 1)
             {
-                throw new ArgumentOutOfRangeException("Frecuency", configuration.Frecuency, ExceptionsTexts.FrecuencyMustBeGreaterThanZero);
+                throw new ArgumentOutOfRangeException("Frecuency", configuration.Frecuency, Messages.Frecuency_Must_Be_Greater_Than_Zero);
             }
 
             if (configuration.StartDate == null)
             {
-                throw new ArgumentNullException(ExceptionsTexts.NullStartDate);
+                throw new ArgumentNullException(Messages.Null_Start_Date);
             }
 
             if (configuration.EndDate.HasValue && configuration.EndDate.Value < configuration.StartDate.Value)
             {
-                throw new ArgumentOutOfRangeException("EndDate", configuration.EndDate, ExceptionsTexts.EndDateMustBeGreaterThanStartDate);
+                throw new ArgumentOutOfRangeException("EndDate", configuration.EndDate, Messages.End_Date_Must_Be_Greater_Than_Start_Date);
             }
         }
     }

@@ -24,7 +24,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 10, 31));
-            Assert.Equal("Occurs every week. Schedule will be used on 31/10/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 31/10/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 1));
-            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/11/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 2));
-            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 02/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 02/11/2021", Result.Value.Description);
         }
 
 
@@ -82,7 +82,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 3));
-            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 03/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 03/11/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 4));
-            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 04/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 04/11/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 5));
-            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 05/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 05/11/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 6));
-            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 06/11/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 06/11/2021", Result.Value.Description);
         }
 
         #endregion
@@ -162,7 +162,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 1));
-            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 2));
-            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -200,7 +200,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 3));
-            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
 
@@ -220,8 +220,8 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 4));
-            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 31/10/2021", Text);
-       }
+            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 31/10/2021", Result.Value.Description);
+        }
 
         [Fact]
         public void Calculate_Recurring_Weekly_Friday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
@@ -239,7 +239,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 5));
-            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -258,7 +258,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 6));
-            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 31/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 31/10/2021", Result.Value.Description);
         }
 
 
@@ -282,7 +282,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 1));
-            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -301,7 +301,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 1));
-            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 01/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -320,7 +320,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 3));
-            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
 
@@ -340,7 +340,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 3));
-            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 03/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -359,7 +359,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 5));
-            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -378,7 +378,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 5));
-            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 05/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -397,7 +397,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 8));
-            Assert.Equal("Occurs every week. Schedule will be used on 08/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 08/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         #endregion
@@ -420,7 +420,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 10, 31));
-            Assert.Equal("Occurs every week. Schedule will be used on 31/10/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 31/10/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -439,7 +439,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 2));
-            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -458,7 +458,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 2));
-            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 02/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
 
@@ -478,7 +478,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 4));
-            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -497,7 +497,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 4));
-            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 04/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -516,7 +516,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 6));
-            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -535,7 +535,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 6));
-            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 01/10/2021", Text);
+            Assert.Equal("Occurs every week. Schedule will be used on 06/11/2021 starting on 01/10/2021", Result.Value.Description);
         }
 
         #endregion
@@ -558,7 +558,7 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 8, 22));
-            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Text);
+            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Result.Value.Description);
         }
 
         [Fact]
@@ -581,7 +581,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_=_Next_Event_Date()
+        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_Equal_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -597,10 +597,10 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 8, 22));
-            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Text);
+            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Result.Value.Description);
         }
 
-    [Fact]
+        [Fact]
         public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
@@ -617,7 +617,63 @@ namespace Scheduler.Test
             var Result = new Processor(configuration).GetNextExecution();
 
             Result.Value.DateTime.Should().Be(new DateTime(2021, 8, 22));
-            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Text);
+            Assert.Equal("Occurs every 3 weeks. Schedule will be used on 22/08/2021 starting on 01/08/2021", Result.Value.Description);
+        }
+        #endregion
+
+        #region CALCULATE EXTREME CASES
+        [Fact]
+        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_39_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 18),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 3,
+                StartDate = new DateTime(9999, 12, 18),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
+            };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Processor(configuration).GetNextExecution());
+        }
+
+        [Fact]
+        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_38_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 18),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 2,
+                StartDate = new DateTime(9999, 12, 18),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(9999, 12, 28));
+            Assert.Equal("Occurs every 2 weeks. Schedule will be used on 28/12/9999 starting on 18/12/9999", Result.Value.Description);
+        }
+
+        [Fact]
+        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_37_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 19),
+                PeriodicityType = PeriodicityTypes.Recurring,
+                PeriodicityMode = PeriodicityModes.Weekly,
+                Frecuency = 2,
+                StartDate = new DateTime(9999, 12, 18),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(9999, 12, 28));
+            Assert.Equal("Occurs every 2 weeks. Schedule will be used on 28/12/9999 starting on 18/12/9999", Result.Value.Description);
         }
         #endregion
     }
