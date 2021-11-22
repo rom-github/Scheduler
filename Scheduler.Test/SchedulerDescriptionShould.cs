@@ -7,7 +7,7 @@ namespace Scheduler.Test
     public class SchedulerDescriptionShould
     {
         [Fact]
-        public void Verify_Description_Once()
+        internal void Verify_Description_Once()
         {
             Configuration testConfiguration = new Configuration()
             {
@@ -26,7 +26,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Verify_Description_Recurring_Daily_Frecuency_1()
+        internal void Verify_Description_Recurring_Daily_Frecuency_1()
         {
             Configuration testConfiguration = new Configuration()
             {
@@ -47,7 +47,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Verify_Description_Recurring_Daily_Frecuency_Greather_Than_1()
+        internal void Verify_Description_Recurring_Daily_Frecuency_Greather_Than_1()
         {
             Configuration testConfiguration = new Configuration()
             {

@@ -8,7 +8,7 @@ namespace Scheduler.Test
     {
         #region Frecuency 1
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -26,7 +26,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_With_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_All_Dates_Are_Equal_With_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -45,7 +45,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_With_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_With_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -64,7 +64,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Tomorrow_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -82,7 +82,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -100,7 +100,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Today()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Today()
         {
             Configuration configuration = new Configuration()
             {
@@ -119,7 +119,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Tomorrow()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Yesterday_With_End_Date_Tomorrow()
         {
             Configuration configuration = new Configuration()
             {
@@ -138,7 +138,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -156,7 +156,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_With_End_Date_Yesterday()
+        internal void Calculate_Recurring_Daily_Every_1_Starts_Several_Days_Before_Yesterday_With_End_Date_Yesterday()
         {
             Configuration configuration = new Configuration()
             {
@@ -177,7 +177,7 @@ namespace Scheduler.Test
 
         #region Frecuency 3
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -195,7 +195,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_With_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_All_Dates_Are_Equal_With_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -214,7 +214,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -232,7 +232,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_With_End_Date_Today()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_With_End_Date_Today()
         {
             Configuration configuration = new Configuration()
             {
@@ -250,7 +250,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -268,7 +268,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_With_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_1_With_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -286,7 +286,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -304,7 +304,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_With_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Minus_2_With_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -323,7 +323,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -341,7 +341,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_With_End_Date_Yesterday_Minus2()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Too_Long_Ago_With_End_Date_Yesterday_Minus2()
         {
             Configuration configuration = new Configuration()
             {
@@ -359,7 +359,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -377,7 +377,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_With_End_Date_In_The_Future()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_In_The_Future_With_End_Date_In_The_Future()
         {
             Configuration configuration = new Configuration()
             {
@@ -396,7 +396,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date_CurrentDate_MaxValue()
+        internal void Calculate_Recurring_Daily_Every_3_Starts_Yesterday_Without_End_Date_CurrentDate_MaxValue()
         {
             Configuration configuration = new Configuration()
             {
@@ -417,7 +417,7 @@ namespace Scheduler.Test
         #region Frecuency 100
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -435,7 +435,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_With_End_Date_Tomorrow_Plus_15()
+        internal void Calculate_Recurring_Daily_Every_100_Starts_Yesterday_With_End_Date_Tomorrow_Plus_15()
         {
             Configuration configuration = new Configuration()
             {
@@ -453,7 +453,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Without_End_Date()
+        internal void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -471,7 +471,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_On_The_Next_Event_Date()
+        internal void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_On_The_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -490,7 +490,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_The_Day_Before_Next_Event_Date()
+        internal void Calculate_Recurring_Daily_Every_100_Starts_2_Years_Ago_Ends_The_Day_Before_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {

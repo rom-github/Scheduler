@@ -8,7 +8,7 @@ namespace Scheduler.Test
     {
         #region COMMON TESTS
         [Fact]
-        public void Throws_Exception_On_Null_Configuration()
+        internal void Throws_Exception_On_Null_Configuration()
         {
             Processor Processor = new Processor(null);
 
@@ -16,7 +16,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Null_Current_Date()
+        internal void Throws_Exception_On_Null_Current_Date()
         {
             Processor Processor = new Processor(new Configuration());
 
@@ -26,7 +26,7 @@ namespace Scheduler.Test
 
         #region ONCE TESTS
         [Fact]
-        public void Throws_Exception_On_Once_Null_EventDate()
+        internal void Throws_Exception_On_Once_Null_EventDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -43,7 +43,7 @@ namespace Scheduler.Test
 
         #region RECURRING TESTS
         [Fact]
-        public void Throws_Exception_On_Null_Periodicity_Mode()
+        internal void Throws_Exception_On_Null_Periodicity_Mode()
         {
             Configuration configuration = new Configuration()
             {
@@ -57,7 +57,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Null_Frecuency()
+        internal void Throws_Exception_On_Null_Frecuency()
         {
             Configuration configuration = new Configuration()
             {
@@ -72,7 +72,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Frecuency_Zero()
+        internal void Throws_Exception_On_Frecuency_Zero()
         {
             Configuration configuration = new Configuration()
             {
@@ -88,7 +88,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Negative_Frecuency()
+        internal void Throws_Exception_On_Negative_Frecuency()
         {
             Configuration configuration = new Configuration()
             {
@@ -104,7 +104,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Null_Start_Date()
+        internal void Throws_Exception_On_Null_Start_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -120,7 +120,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Throws_Exception_On_Start_Date_Greather_Than_End_Date()
+        internal void Throws_Exception_On_Start_Date_Greather_Than_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -147,7 +147,7 @@ namespace Scheduler.Test
 
 
         //[Fact]
-        //public void Schedule_Calculate_Monthly_Fourth_Day_Every_Between_Limits_NoEndDate_Series()
+        //internal void Schedule_Calculate_Monthly_Fourth_Day_Every_Between_Limits_NoEndDate_Series()
         //{
         //    ScheduleConfiguration sc = new ScheduleConfiguration
         //    {

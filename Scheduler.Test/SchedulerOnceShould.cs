@@ -7,7 +7,7 @@ namespace Scheduler.Test
     public class SchedulerOnceShould
     {
         [Fact]
-        public void Calculate_Once_All_Dates_Are_Equal()
+        internal void Calculate_Once_All_Dates_Are_Equal()
         {
             Configuration configuration = new Configuration()
             {
@@ -23,7 +23,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Once_Current_Date_Greather_Than_Event_Date()
+        internal void Calculate_Once_Current_Date_Greather_Than_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -38,7 +38,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Once_Event_Date_Greather_Than_Current_Date()
+        internal void Calculate_Once_Event_Date_Greather_Than_Current_Date()
         {
             Configuration configuration = new Configuration()
             {

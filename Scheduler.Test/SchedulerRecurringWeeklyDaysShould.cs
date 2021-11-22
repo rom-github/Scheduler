@@ -9,7 +9,7 @@ namespace Scheduler.Test
         #region CALCULATE EVERY SINGLE DAY OF THE WEEK --> StartDay = CurrentDate = DayOfWeek WITHOUT EndDate
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Sunday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Sunday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -28,7 +28,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Monday_Every_1_All_Dates_Are_Monday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Monday_Every_1_All_Dates_Are_Monday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -47,7 +47,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Tuesday_Every_1_All_Dates_Are_Tuesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Tuesday_Every_1_All_Dates_Are_Tuesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -67,7 +67,7 @@ namespace Scheduler.Test
 
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Wednesday_Every_1_All_Dates_Are_Wednesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Wednesday_Every_1_All_Dates_Are_Wednesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -86,7 +86,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Thursday_Every_1_All_Dates_Are_Thursday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Thursday_Every_1_All_Dates_Are_Thursday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -105,7 +105,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Friday_Every_1_All_Dates_Are_Friday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Friday_Every_1_All_Dates_Are_Friday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -124,7 +124,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Saturday_Every_1_All_Dates_Are_Saturday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Saturday_Every_1_All_Dates_Are_Saturday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -147,7 +147,7 @@ namespace Scheduler.Test
         #region CALCULATE EVERY SINGLE DAY OF THE WEEK --> StartDay = CurrentDate BUT DIFFERENT DayOfWeek WITHOUT EndDate
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Monday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Monday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -166,7 +166,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Tuesday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Tuesday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -185,7 +185,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Wednesday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Wednesday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -205,7 +205,7 @@ namespace Scheduler.Test
 
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Thursday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Thursday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -224,7 +224,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Friday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Friday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -243,7 +243,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Saturday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_Saturday_Every_1_All_Dates_Are_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -267,7 +267,7 @@ namespace Scheduler.Test
         #region CALCULATE MONDAY-WENSDAY-FRIDAY --> DIFFERENT CurrentDate WITHOUT EndDate
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -286,7 +286,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Monday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Monday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -305,7 +305,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Tuesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Tuesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -325,7 +325,7 @@ namespace Scheduler.Test
 
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Wednesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Wednesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -344,7 +344,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Thursday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Thursday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -363,7 +363,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Friday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Friday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -382,7 +382,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Saturday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_MonWenFri_Every_1_CurrentDate_Is_Saturday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -405,7 +405,7 @@ namespace Scheduler.Test
         #region CALCULATE SUNDAY-TUESDAY-THURSDAY-SATURDAY --> DIFFERENT CurrentDate WITHOUT EndDate
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Sunday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Sunday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -424,7 +424,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Monday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Monday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -443,7 +443,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Tuesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Tuesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -463,7 +463,7 @@ namespace Scheduler.Test
 
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Wednesday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Wednesday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -482,7 +482,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Thursday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Thursday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -501,7 +501,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Friday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Friday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -520,7 +520,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Saturday_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_1_CurrentDate_Is_Saturday_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -543,7 +543,7 @@ namespace Scheduler.Test
         #region CALCULATE EVERY 3 SUNDAY-TUESDAY-THURSDAY-SATURDAY
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_Without_End_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_Without_End_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -562,7 +562,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_Before_Next_Event_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_Before_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -581,7 +581,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_Equal_Next_Event_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_Equal_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -601,7 +601,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
+        internal void Calculate_Recurring_Weekly_SunTueThrSat_Every_3_CurrentDate_Is_Before_Next_Event_Week_With_End_Date_After_Next_Event_Date()
         {
             Configuration configuration = new Configuration()
             {
@@ -623,7 +623,7 @@ namespace Scheduler.Test
 
         #region CALCULATE EXTREME CASES WITH DateTime.MaxValue
         [Fact]
-        public void Calculate_Recurring_Weekly_TueFri_Every_3_All_Dates_Are_Saturday_Close_To_MaxDate()
+        internal void Calculate_Recurring_Weekly_TueFri_Every_3_All_Dates_Are_Saturday_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -641,7 +641,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_TueFri_Every_2_All_Dates_Are_Saturday_Close_To_MaxDate()
+        internal void Calculate_Recurring_Weekly_TueFri_Every_2_All_Dates_Are_Saturday_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -660,7 +660,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_TueFri_Every_2_Starting_On_Saturday_CurrentDate_Is_Next_Monday()
+        internal void Calculate_Recurring_Weekly_TueFri_Every_2_Starting_On_Saturday_CurrentDate_Is_Next_Monday()
         {
             Configuration configuration = new Configuration()
             {
@@ -679,7 +679,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_TueFri_Every_22_All_Dates_Are_Close_To_MaxDate()
+        internal void Calculate_Recurring_Weekly_TueFri_Every_22_All_Dates_Are_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -697,7 +697,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Sat_Every_1_All_Dates_Are_Close_To_MaxDate()
+        internal void Calculate_Recurring_Weekly_Sat_Every_1_All_Dates_Are_Close_To_MaxDate()
         {
             Configuration configuration = new Configuration()
             {
@@ -717,7 +717,7 @@ namespace Scheduler.Test
 
         #region CALCULATE EXTREME CASES WITH DateTime.MinValue
         [Fact]
-        public void Calculate_Recurring_Weekly_TueFri_Every_1_All_Dates_Are_DateTime_MinValue()
+        internal void Calculate_Recurring_Weekly_TueFri_Every_1_All_Dates_Are_DateTime_MinValue()
         {
             Configuration configuration = new Configuration()
             {
@@ -736,7 +736,7 @@ namespace Scheduler.Test
         }
 
         [Fact]
-        public void Calculate_Recurring_Weekly_Sun_Every_1_All_Dates_Are_DateTime_MinValue()
+        internal void Calculate_Recurring_Weekly_Sun_Every_1_All_Dates_Are_DateTime_MinValue()
         {
             Configuration configuration = new Configuration()
             {
