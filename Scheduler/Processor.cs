@@ -5,6 +5,9 @@ namespace Scheduler
 {
     public class Processor
     {
+        private const int DaysInAWeek = 7;
+        private const int SecondsInADay = 86400;
+        private const int SecondsInAWeek = 604800;
         private Configuration configuration;
 
         public Processor(Configuration configuration)
@@ -53,24 +56,21 @@ namespace Scheduler
                     nextDate = GetWeeklyCalculation();
                     break;
 
-                //case PeriodicityModes.Monthly:
-                //    NextDate = GetMonthlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
-                //    break;
+                    //case PeriodicityModes.Monthly:
+                    //    NextDate = GetMonthlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
+                    //    break;
 
-                //case PeriodicityModes.Yearly:
-                //    NextDate = GetYearlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
-                //    break;
+                    //case PeriodicityModes.Yearly:
+                    //    NextDate = GetYearlyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate, this.configuration.Frecuency.Value);
+                    //    break;
             }
 
-            if (nextDate > this.configuration.EndDate)
-            {
-                nextDate = null;
-            }
-
-            if (nextDate == null)
+            if (nextDate.HasValue == false || nextDate > this.configuration.EndDate)
             {
                 return null;
             }
+
+            nextDate = this.SetEventHour(nextDate.Value);
 
             return new Result(nextDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextDate.Value));
         }
@@ -84,7 +84,7 @@ namespace Scheduler
 
         private DateTime? GetWeeklyCalculation()
         {
-            DateTime? eventDate = this.GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value * 7);
+            DateTime? eventDate = this.GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value * Processor.DaysInAWeek);
 
             if (this.configuration.DaysOfWeek != null && this.configuration.DaysOfWeek.Length > 0)
             {
@@ -102,7 +102,7 @@ namespace Scheduler
             DateTime? firstDayOfWeekEventDate = null;
             if (firstDayOfWeekStartDate.HasValue && firstDayOfWeekCurrentDay.HasValue)
             {
-                firstDayOfWeekEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate.Value, firstDayOfWeekCurrentDay.Value, this.configuration.Frecuency.Value * 7);
+                firstDayOfWeekEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate.Value, firstDayOfWeekCurrentDay.Value, this.configuration.Frecuency.Value * Processor.DaysInAWeek);
             }
 
             if (eventDate.HasValue)
@@ -112,7 +112,7 @@ namespace Scheduler
                 {
                     return this.configuration.CurrentDate.Value.DayOfWeek <= this.configuration.DaysOfWeek.Max()
                         ? GetNextEventDateInAWeek(this.configuration.CurrentDate.Value.FirsDayOfWeek())
-                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddDaysNullable(this.configuration.Frecuency.Value * 7));
+                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddDaysNullable(this.configuration.Frecuency.Value * Processor.DaysInAWeek));
                 }
                 else
                 {
@@ -177,15 +177,47 @@ namespace Scheduler
         {
             double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalDays / Frecuency;
 
-            if (CompletePeriodsFromStartToCurrent < 1)
-            {
-                return startDate.AddDaysNullable(Frecuency);
-            }
-
             DateTime LastExecution = startDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
             return LastExecution == currentDate
                 ? currentDate
                 : LastExecution.AddDaysNullable(Frecuency);
+        }
+
+        //private DateTime? GetGeneralCalculation(DateTime startHour, DateTime currentHour, int Frecuency)
+        //{
+        //    double CompletePeriodsFromStartToCurrent = (currentHour.TimeOfDay - startHour.TimeOfDay).TotalHours / Frecuency;
+
+        //    TimeSpan LastExecution = startHour.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
+        //    return LastExecution == currentDate
+        //        ? currentDate
+        //        : LastExecution.AddDaysNullable(Frecuency);
+        //}
+
+        private DateTime SetEventHour(DateTime eventDateTime)
+        {
+            //if (this.configuration.CurrentDate.Value.Date < eventDateTime ||
+            //    this.configuration.CurrentDate.Value.TimeOfDay < this.configuration.StartHour.Value)
+            //{
+            //    return eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds);
+            //}
+
+
+            //switch (this.configuration.DailyFrecuencyType.Value)
+            //{
+            //    case DailyFrecuencyTypes.Hour:
+            //        break;
+            //    case DailyFrecuencyTypes.Minute:
+            //        break;
+            //    case DailyFrecuencyTypes.Second:
+            //        break;
+            //    default:
+            //        return eventDateTime;
+            //}
+
+
+
+
+            return eventDateTime;
         }
 
         private string GetDescription(DateTime startDate, DateTime nextDate)

@@ -10,5 +10,6 @@
         internal const string Null_Frecuency = "Debe establecer la propiedad \"Frecuency\".";
         internal const string Null_Periodicity_Mode = "Debe establecer un valor a la propiedad \"PeriodicityMode\".";
         internal const string Null_Start_Date = "Debe establecer un valor a la propiedad \"StartDate\".";
+        internal const string Incorrect_Hour_Configuration = "La configuración de horas/minutos/segundos no es válida.";
     }
 }

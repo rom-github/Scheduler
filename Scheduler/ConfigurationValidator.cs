@@ -67,6 +67,30 @@ namespace Scheduler
             {
                 throw new ArgumentOutOfRangeException("EndDate", configuration.EndDate, Messages.End_Date_Must_Be_Greater_Than_Start_Date);
             }
+
+            this.ValidateHoursConfiguration(configuration);
+        }
+
+        private void ValidateHoursConfiguration(Configuration configuration)
+        {
+            if (configuration.DailyFrecuencyType.HasValue && configuration.EveryDailyFrecuencyType.HasValue)
+            {
+                if (configuration.StartHour.HasValue == false)
+                {
+                    configuration.StartHour = new TimeSpan(0, 0, 0);
+                }
+                if (configuration.EndHour.HasValue == false)
+                {
+                    configuration.EndHour = new TimeSpan(23, 59, 59);
+                }
+            }
+            else
+            {
+                if (configuration.DailyFrecuencyType.HasValue || configuration.EveryDailyFrecuencyType.HasValue)
+                {
+                    throw new ArgumentException(Messages.Incorrect_Hour_Configuration);
+                }
+            }
         }
     }
 }
