@@ -47,11 +47,26 @@ namespace Scheduler
                 return new Result(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
+            DateTime? nextEventDate = this.GetNextEventDate(this.configuration.CurrentDate.Value);
+
+            if (nextEventDate.HasValue == false)
+            {
+                return null;
+            }
+
+            nextEventDate = this.SetEventHour(nextEventDate.Value);
+
+            return new Result(nextEventDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextEventDate.Value));
+        }
+
+        private DateTime? GetNextEventDate(DateTime currentDateTime)
+        {
+
             DateTime? nextDate = null;
             switch (this.configuration.DateFrecuencyType.Value)
             {
                 case DateFrecuencyTypes.Daily:
-                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value.Date, this.configuration.CurrentDate.Value.Date, this.configuration.DateFrecuency.Value);
+                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value.Date, currentDateTime.Date, this.configuration.DateFrecuency.Value);
                     break;
 
                 case DateFrecuencyTypes.Weekly:
@@ -64,9 +79,7 @@ namespace Scheduler
                 return null;
             }
 
-            nextDate = this.SetEventHour(nextDate.Value);
-
-            return new Result(nextDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextDate.Value));
+            return nextDate;
         }
 
         private DateTime? GetDailyCalculation(DateTime startDate, DateTime currentDate, int frecuency)
@@ -148,7 +161,7 @@ namespace Scheduler
                 : LastExecution.AddSecondsNullable(frecuencyInSeconds);
         }
 
-        private DateTime SetEventHour(DateTime eventDateTime)
+        private DateTime? SetEventHour(DateTime eventDateTime)
         {
             if (this.configuration.TimeFrecuencyType.HasValue == false)
             {
@@ -161,6 +174,23 @@ namespace Scheduler
                 return eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds);
             }
 
+            DateTime newEventDateTime = this.CalculateEventHour(eventDateTime);
+            DateTime MaxHour = eventDateTime.AddSeconds(this.configuration.EndHour.Value.TotalSeconds);
+
+            if (newEventDateTime > MaxHour)
+            {
+                DateTime? nextEventDate = this.GetNextEventDate(MaxHour.AddDays(1));
+                if (nextEventDate.HasValue == false)
+                {
+                    return null;
+                }
+                return nextEventDate.Value.AddSeconds(this.configuration.StartHour.Value.TotalSeconds);
+            }
+            return newEventDateTime;
+        }
+
+        private DateTime CalculateEventHour(DateTime eventDateTime)
+        {
             int FrecuencyInSeconds;
             switch (this.configuration.TimeFrecuencyType.Value)
             {
@@ -177,13 +207,7 @@ namespace Scheduler
                     break;
             }
 
-            eventDateTime =  this.GetGeneralCalculation(eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds), this.configuration.CurrentDate.Value, FrecuencyInSeconds).Value;
-            DateTime MaxHour = eventDateTime.AddSeconds(this.configuration.EndHour.Value.TotalSeconds);
-
-            if (eventDateTime > MaxHour)
-            {
-
-            }
+            return this.GetGeneralCalculation(eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds), this.configuration.CurrentDate.Value, FrecuencyInSeconds).Value;
         }
 
         private string GetDescription(DateTime startDate, DateTime nextDate)
