@@ -12,7 +12,7 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Once,
+                PeriodicityMode = PeriodicityModes.Once,
                 EventDate = new DateTime(2000, 1, 1)
             };
 
@@ -28,7 +28,7 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 2),
-                PeriodicityType = PeriodicityTypes.Once,
+                PeriodicityMode = PeriodicityModes.Once,
                 EventDate = new DateTime(2000, 1, 1)
             };
 
@@ -43,7 +43,7 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Once,
+                PeriodicityMode = PeriodicityModes.Once,
                 EventDate = new DateTime(2000, 1, 2)
             };
 

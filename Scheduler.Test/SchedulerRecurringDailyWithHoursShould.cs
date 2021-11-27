@@ -12,11 +12,14 @@ namespace Scheduler.Test
         {
             Configuration configuration = new Configuration()
             {
-                CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 1,
-                StartDate = new DateTime(2000, 6, 15)
+                CurrentDate = new DateTime(2000, 6, 17, 12, 0, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 15), 
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 2,
+
             };
 
             var Result = new Processor(configuration).GetNextExecution();

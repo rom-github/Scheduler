@@ -14,9 +14,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday }
             };
@@ -33,9 +33,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday }
             };
@@ -52,9 +52,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 2),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 2),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday }
             };
@@ -72,9 +72,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 3),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 3),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Wednesday }
             };
@@ -91,9 +91,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 4),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 4),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Thursday }
             };
@@ -110,9 +110,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 5),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 5),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Friday }
             };
@@ -129,9 +129,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 6),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 11, 6),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Saturday }
             };
@@ -152,9 +152,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday }
             };
@@ -171,9 +171,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday }
             };
@@ -190,9 +190,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Wednesday }
             };
@@ -210,9 +210,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Thursday }
             };
@@ -229,9 +229,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Friday }
             };
@@ -248,9 +248,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 31),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Saturday }
             };
@@ -272,9 +272,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -291,9 +291,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -310,9 +310,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 2),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -330,9 +330,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 3),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -349,9 +349,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 4),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -368,9 +368,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 5),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -387,9 +387,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 6),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
             };
@@ -410,9 +410,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 10, 31),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -429,9 +429,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -448,9 +448,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 2),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -468,9 +468,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 3),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -487,9 +487,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 4),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -506,9 +506,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 5),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -525,9 +525,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 11, 6),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2021, 10, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -548,9 +548,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 8, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2021, 8, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
             };
@@ -567,9 +567,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 8, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2021, 8, 1),
                 EndDate = new DateTime(2021, 8, 16),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
@@ -586,9 +586,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 8, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2021, 8, 1),
                 EndDate = new DateTime(2021, 8, 22),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
@@ -606,9 +606,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2021, 8, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2021, 8, 1),
                 EndDate = new DateTime(2021, 8, 23),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Saturday }
@@ -628,9 +628,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(9999, 12, 18),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(9999, 12, 18),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
@@ -646,9 +646,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(9999, 12, 18),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 2,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 2,
                 StartDate = new DateTime(9999, 12, 18),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
@@ -665,9 +665,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(9999, 12, 19),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 2,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 2,
                 StartDate = new DateTime(9999, 12, 18),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
@@ -684,9 +684,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(9999, 12, 19),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 22,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 22,
                 StartDate = new DateTime(9999, 12, 18),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
@@ -702,9 +702,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(9999, 12, 28),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(9999, 12, 28),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Saturday }
             };
@@ -722,9 +722,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(1, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(1, 1, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Tuesday, DayOfWeek.Friday }
             };
@@ -741,9 +741,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(1, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(1, 1, 1),
                 DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday }
             };

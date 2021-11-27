@@ -1,19 +1,17 @@
 ﻿namespace Scheduler
 {
-    public enum PeriodicityTypes
+    public enum PeriodicityModes
     {
         Once,
         Recurring
     }
-    public enum PeriodicityModes
+    public enum DateFrecuencyTypes
     {
         Daily,
         Weekly
-        //Monthly,
-        //Yearly
     }
 
-    public enum DailyFrecuencyTypes
+    public enum TimeFrecuencyTypes
     { 
         Hour,
         Minute,

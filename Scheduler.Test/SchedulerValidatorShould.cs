@@ -31,7 +31,7 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Once
+                PeriodicityMode = PeriodicityModes.Once
             };
 
             Processor Processor = new Processor(configuration);
@@ -48,7 +48,7 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring
+                PeriodicityMode = PeriodicityModes.Recurring
             };
 
             Processor Processor = new Processor(configuration);
@@ -62,8 +62,8 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily
             };
 
             Processor Processor = new Processor(configuration);
@@ -77,9 +77,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 0
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 0
             };
 
             Processor Processor = new Processor(configuration);
@@ -93,9 +93,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = -1
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = -1
             };
 
             Processor Processor = new Processor(configuration);
@@ -109,9 +109,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 1
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1
             };
 
             Processor Processor = new Processor(configuration);
@@ -125,9 +125,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 1, 1),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 6),
                 EndDate = new DateTime(2000, 6, 5)
             };

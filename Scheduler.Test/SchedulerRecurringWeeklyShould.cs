@@ -13,9 +13,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 15)
             };
 
@@ -31,9 +31,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 15),
                 EndDate = new DateTime(2000, 6, 15),
             };
@@ -50,9 +50,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 16)
             };
 
@@ -68,9 +68,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 16),
                 EndDate = new DateTime(2000, 6, 17),
             };
@@ -87,9 +87,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 14)
             };
 
@@ -105,9 +105,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 14),
                 EndDate = new DateTime(2000, 6, 15)
             };
@@ -123,9 +123,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 14),
                 EndDate = new DateTime(2000, 6, 21)
             };
@@ -142,9 +142,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 12)
             };
 
@@ -160,9 +160,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 15),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 1,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
                 StartDate = new DateTime(2000, 6, 12),
                 EndDate = new DateTime(2000, 6, 14),
             };
@@ -180,9 +180,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 6),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7)
             };
 
@@ -198,9 +198,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 7),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7)
             };
 
@@ -216,9 +216,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 8),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7)
             };
 
@@ -234,9 +234,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 8),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7),
                 EndDate = new DateTime(2000, 6, 27)
             };
@@ -252,9 +252,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 8),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7),
                 EndDate = new DateTime(2000, 6, 28)
             };
@@ -271,9 +271,9 @@ namespace Scheduler.Test
             Configuration configuration = new Configuration()
             {
                 CurrentDate = new DateTime(2000, 6, 8),
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Weekly,
-                Frecuency = 3,
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 3,
                 StartDate = new DateTime(2000, 6, 7),
                 EndDate = new DateTime(2000, 6, 29)
             };

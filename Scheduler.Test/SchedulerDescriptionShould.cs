@@ -11,7 +11,7 @@ namespace Scheduler.Test
         {
             Configuration testConfiguration = new Configuration()
             {
-                PeriodicityType = PeriodicityTypes.Once
+                PeriodicityMode = PeriodicityModes.Once
             };
 
             var ProcessorAssembly = Assembly.GetAssembly(typeof(Processor));
@@ -30,9 +30,9 @@ namespace Scheduler.Test
         {
             Configuration testConfiguration = new Configuration()
             {
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 1
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1
             };
 
             var ProcessorAssembly = Assembly.GetAssembly(typeof(Processor));
@@ -51,9 +51,9 @@ namespace Scheduler.Test
         {
             Configuration testConfiguration = new Configuration()
             {
-                PeriodicityType = PeriodicityTypes.Recurring,
-                PeriodicityMode = PeriodicityModes.Daily,
-                Frecuency = 3
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 3
             };
 
             var ProcessorAssembly = Assembly.GetAssembly(typeof(Processor));

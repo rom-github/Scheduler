@@ -8,12 +8,12 @@ namespace Scheduler
         {
             this.ValidateCommon(configuration);
 
-            if (configuration.PeriodicityType == PeriodicityTypes.Once)
+            if (configuration.PeriodicityMode == PeriodicityModes.Once)
             {
                 this.ValidateOnce(configuration);
             }
 
-            if (configuration.PeriodicityType == PeriodicityTypes.Recurring)
+            if (configuration.PeriodicityMode == PeriodicityModes.Recurring)
             {
                 this.ValidateRecurring(configuration);
             }
@@ -43,19 +43,19 @@ namespace Scheduler
         private void ValidateRecurring(Configuration configuration)
         {
 
-            if (configuration.PeriodicityMode == null)
+            if (configuration.DateFrecuencyType == null)
             {
                 throw new ArgumentNullException(Messages.Null_Periodicity_Mode);
             }
 
-            if (configuration.Frecuency == null)
+            if (configuration.DateFrecuency == null)
             {
                 throw new ArgumentNullException(Messages.Null_Frecuency);
             }
 
-            if (configuration.Frecuency < 1)
+            if (configuration.DateFrecuency < 1)
             {
-                throw new ArgumentOutOfRangeException("Frecuency", configuration.Frecuency, Messages.Frecuency_Must_Be_Greater_Than_Zero);
+                throw new ArgumentOutOfRangeException("Frecuency", configuration.DateFrecuency, Messages.Frecuency_Must_Be_Greater_Than_Zero);
             }
 
             if (configuration.StartDate == null)
@@ -73,7 +73,7 @@ namespace Scheduler
 
         private void ValidateHoursConfiguration(Configuration configuration)
         {
-            if (configuration.DailyFrecuencyType.HasValue && configuration.EveryDailyFrecuencyType.HasValue)
+            if (configuration.TimeFrecuencyType.HasValue && configuration.TimeFrecuency.HasValue)
             {
                 if (configuration.StartHour.HasValue == false)
                 {
@@ -86,7 +86,7 @@ namespace Scheduler
             }
             else
             {
-                if (configuration.DailyFrecuencyType.HasValue || configuration.EveryDailyFrecuencyType.HasValue)
+                if (configuration.TimeFrecuencyType.HasValue || configuration.TimeFrecuency.HasValue)
                 {
                     throw new ArgumentException(Messages.Incorrect_Hour_Configuration);
                 }

@@ -19,7 +19,7 @@ namespace Scheduler
         {
             new ConfigurationValidator().Validate(this.configuration);
 
-            if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
+            if (this.configuration.PeriodicityMode == PeriodicityModes.Once)
             {
                 return this.CalculateNextExecutionOnce();
             }
@@ -40,19 +40,19 @@ namespace Scheduler
         {
             if (this.configuration.StartDate.Value >= this.configuration.CurrentDate.Value
                 &&
-                (this.configuration.PeriodicityMode != PeriodicityModes.Weekly || this.configuration.DaysOfWeek == null))
+                (this.configuration.DateFrecuencyType != DateFrecuencyTypes.Weekly || this.configuration.DaysOfWeek == null))
             {
                 return new Result(this.configuration.StartDate.Value, this.GetDescription(this.configuration.StartDate.Value, this.configuration.StartDate.Value));
             }
 
             DateTime? nextDate = null;
-            switch (this.configuration.PeriodicityMode.Value)
+            switch (this.configuration.DateFrecuencyType.Value)
             {
-                case PeriodicityModes.Daily:
-                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value);
+                case DateFrecuencyTypes.Daily:
+                    nextDate = GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.DateFrecuency.Value);
                     break;
 
-                case PeriodicityModes.Weekly:
+                case DateFrecuencyTypes.Weekly:
                     nextDate = GetWeeklyCalculation();
                     break;
 
@@ -84,7 +84,7 @@ namespace Scheduler
 
         private DateTime? GetWeeklyCalculation()
         {
-            DateTime? eventDate = this.GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.Frecuency.Value * Processor.DaysInAWeek);
+            DateTime? eventDate = this.GetDailyCalculation(this.configuration.StartDate.Value, this.configuration.CurrentDate.Value, this.configuration.DateFrecuency.Value * Processor.DaysInAWeek);
 
             if (this.configuration.DaysOfWeek != null && this.configuration.DaysOfWeek.Length > 0)
             {
@@ -102,7 +102,7 @@ namespace Scheduler
             DateTime? firstDayOfWeekEventDate = null;
             if (firstDayOfWeekStartDate.HasValue && firstDayOfWeekCurrentDay.HasValue)
             {
-                firstDayOfWeekEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate.Value, firstDayOfWeekCurrentDay.Value, this.configuration.Frecuency.Value * Processor.DaysInAWeek);
+                firstDayOfWeekEventDate = this.GetDailyCalculation(firstDayOfWeekStartDate.Value, firstDayOfWeekCurrentDay.Value, this.configuration.DateFrecuency.Value * Processor.DaysInAWeek);
             }
 
             if (eventDate.HasValue)
@@ -112,7 +112,7 @@ namespace Scheduler
                 {
                     return this.configuration.CurrentDate.Value.DayOfWeek <= this.configuration.DaysOfWeek.Max()
                         ? GetNextEventDateInAWeek(this.configuration.CurrentDate.Value.FirsDayOfWeek())
-                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddSecondsNullable(this.configuration.Frecuency.Value * Processor.SecondsInAWeek));
+                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddSecondsNullable(this.configuration.DateFrecuency.Value * Processor.SecondsInAWeek));
                 }
                 else
                 {
@@ -224,20 +224,20 @@ namespace Scheduler
         {
             string ScheduleText = $"Schedule will be used on { nextDate.ToShortDateString() } starting on { startDate.ToShortDateString() }";
 
-            if (this.configuration.PeriodicityType == PeriodicityTypes.Once)
+            if (this.configuration.PeriodicityMode == PeriodicityModes.Once)
             {
                 return "Occurs once. " + ScheduleText;
             }
 
-            string EveryType = this.configuration.PeriodicityMode.Value.ToString().ToLower().Substring(0, this.configuration.PeriodicityMode.Value.ToString().Length - 2);
+            string EveryType = this.configuration.DateFrecuencyType.Value.ToString().ToLower().Substring(0, this.configuration.DateFrecuencyType.Value.ToString().Length - 2);
             if (EveryType == "dai")
             {
                 EveryType = "day";
             }
 
-            if (this.configuration.Frecuency > 1)
+            if (this.configuration.DateFrecuency > 1)
             {
-                EveryType = this.configuration.Frecuency.ToString().Trim() + " " + EveryType + "s";
+                EveryType = this.configuration.DateFrecuency.ToString().Trim() + " " + EveryType + "s";
             }
             return "Occurs every " + EveryType + ". " + ScheduleText;
         }
