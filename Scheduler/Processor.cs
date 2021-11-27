@@ -79,7 +79,7 @@ namespace Scheduler
         {
             return startDate >= currentDate
                 ? startDate
-                : this.GetGeneralCalculation(startDate, currentDate, frecuency);
+                : this.GetGeneralCalculation(startDate, currentDate, frecuency * Processor.SecondsInADay);
         }
 
         private DateTime? GetWeeklyCalculation()
@@ -112,7 +112,7 @@ namespace Scheduler
                 {
                     return this.configuration.CurrentDate.Value.DayOfWeek <= this.configuration.DaysOfWeek.Max()
                         ? GetNextEventDateInAWeek(this.configuration.CurrentDate.Value.FirsDayOfWeek())
-                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddDaysNullable(this.configuration.Frecuency.Value * Processor.DaysInAWeek));
+                        : GetNextEventDateInAWeek(firstDayOfWeekCurrentDay.Value.AddSecondsNullable(this.configuration.Frecuency.Value * Processor.SecondsInAWeek));
                 }
                 else
                 {
@@ -138,7 +138,7 @@ namespace Scheduler
                 firstDayOfWeekEventDate < this.configuration.CurrentDate.Value))
 
             {
-                firstDayOfWeekEventDate = firstDayOfWeekEventDate.Value.AddDaysNullable(1);
+                firstDayOfWeekEventDate = firstDayOfWeekEventDate.Value.AddSecondsNullable(Processor.SecondsInADay);
             }
 
             return firstDayOfWeekEventDate;
@@ -173,14 +173,14 @@ namespace Scheduler
         //}
 
 
-        private DateTime? GetGeneralCalculation(DateTime startDate, DateTime currentDate, int Frecuency)
+        private DateTime? GetGeneralCalculation(DateTime startDate, DateTime currentDate, int frecuencyInSeconds)
         {
-            double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalDays / Frecuency;
+            double CompletePeriodsFromStartToCurrent = (currentDate.Date - startDate.Date).TotalSeconds / frecuencyInSeconds;
 
-            DateTime LastExecution = startDate.AddDays(Math.Truncate(CompletePeriodsFromStartToCurrent) * Frecuency);
+            DateTime LastExecution = startDate.AddSeconds(Math.Truncate(CompletePeriodsFromStartToCurrent) * frecuencyInSeconds);
             return LastExecution == currentDate
                 ? currentDate
-                : LastExecution.AddDaysNullable(Frecuency);
+                : LastExecution.AddSecondsNullable(frecuencyInSeconds);
         }
 
         //private DateTime? GetGeneralCalculation(DateTime startHour, DateTime currentHour, int Frecuency)

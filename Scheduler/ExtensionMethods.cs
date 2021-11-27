@@ -13,18 +13,18 @@ namespace Scheduler
             return date.AddDays(-(int)date.DayOfWeek);
         }
 
-        public static DateTime? AddDaysNullable(this DateTime date, double numberOfDays)
+        public static DateTime? AddSecondsNullable(this DateTime date, double numberOfSeconds)
         {
-            if (numberOfDays > (DateTime.MaxValue - date).TotalDays)
+            if (numberOfSeconds > (DateTime.MaxValue - date).TotalSeconds)
             {
                 return null;
             }
-            return date.AddDays(numberOfDays);
+            return date.AddSeconds(numberOfSeconds);
         }
 
-        public static DateTime? AddDaysNullable(this DateTime date, int numberOfDays)
+        public static DateTime? AddSecondsNullable(this DateTime date, int numberOfSeconds)
         {
-            return ExtensionMethods.AddDaysNullable(date, Convert.ToDouble(numberOfDays));
+            return ExtensionMethods.AddSecondsNullable(date, Convert.ToDouble(numberOfSeconds));
         }
     }
 }
