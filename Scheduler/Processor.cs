@@ -150,12 +150,10 @@ namespace Scheduler
 
         private DateTime SetEventHour(DateTime eventDateTime)
         {
-            if (this.configuration.TimeFrecuencyType.HasValue == false ||
-                this.configuration.TimeFrecuency.HasValue == false)
+            if (this.configuration.TimeFrecuencyType.HasValue == false)
             {
                 return eventDateTime;
             }
-
 
             if (this.configuration.CurrentDate.Value.Date < eventDateTime ||
                 this.configuration.CurrentDate.Value.TimeOfDay < this.configuration.StartHour.Value)
@@ -179,29 +177,86 @@ namespace Scheduler
                     break;
             }
 
-            return this.GetGeneralCalculation(eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds), this.configuration.CurrentDate.Value, FrecuencyInSeconds).Value;
+            eventDateTime =  this.GetGeneralCalculation(eventDateTime.AddSeconds(this.configuration.StartHour.Value.TotalSeconds), this.configuration.CurrentDate.Value, FrecuencyInSeconds).Value;
+            DateTime MaxHour = eventDateTime.AddSeconds(this.configuration.EndHour.Value.TotalSeconds);
+
+            if (eventDateTime > MaxHour)
+            {
+
+            }
         }
 
         private string GetDescription(DateTime startDate, DateTime nextDate)
         {
-            string ScheduleText = $"Schedule will be used on { nextDate.ToShortDateString() } starting on { startDate.ToShortDateString() }";
+            string EventHourText = this.configuration.TimeFrecuencyType.HasValue
+                ? " " + nextDate.TimeOfDay.ToString()
+                : string.Empty;
+
+
+            string ScheduleText = $"Schedule will be used on { nextDate.ToShortDateString() + EventHourText } starting on { startDate.ToShortDateString() }";
 
             if (this.configuration.PeriodicityMode == PeriodicityModes.Once)
             {
                 return "Occurs once. " + ScheduleText;
             }
 
-            string EveryType = this.configuration.DateFrecuencyType.Value.ToString().ToLower().Substring(0, this.configuration.DateFrecuencyType.Value.ToString().Length - 2);
-            if (EveryType == "dai")
+            return "Occurs every " +
+                this.GetDateTypeDescription() +
+                this.GetDaysOfWeekDescription() +
+                this.GetTimeFrecuencyDescription() +
+                ". " + ScheduleText;
+        }
+
+        private string GetDateTypeDescription()
+        {
+            string Text = this.configuration.DateFrecuencyType.Value.ToString().ToLower().Substring(0, this.configuration.DateFrecuencyType.Value.ToString().Length - 2);
+            if (Text == "dai")
             {
-                EveryType = "day";
+                Text = "day";
             }
 
-            if (this.configuration.DateFrecuency > 1)
+            return this.configuration.DateFrecuency > 1
+                ? this.configuration.DateFrecuency.ToString().Trim() + " " + Text + "s"
+                : Text;
+        }
+
+        private string GetDaysOfWeekDescription()
+        {
+            string Text = string.Empty;
+            if (this.configuration.DateFrecuencyType == DateFrecuencyTypes.Weekly &&
+                this.configuration.DaysOfWeek != null && this.configuration.DaysOfWeek.Length > 0)
             {
-                EveryType = this.configuration.DateFrecuency.ToString().Trim() + " " + EveryType + "s";
+                for (int i = 0; i < this.configuration.DaysOfWeek.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        Text += " on ";
+                    }
+                    else
+                    {
+                        Text += i == this.configuration.DaysOfWeek.Length - 1
+                            ? " and "
+                            : ", ";
+                    }
+                    Text += this.configuration.DaysOfWeek[i].ToString().ToLower();
+                }
             }
-            return "Occurs every " + EveryType + ". " + ScheduleText;
+            return Text;
+        }
+
+        private string GetTimeFrecuencyDescription()
+        {
+            if (this.configuration.TimeFrecuencyType.HasValue == false)
+            {
+                return string.Empty;
+            }
+
+            string Plural = this.configuration.TimeFrecuency == 1 ? string.Empty : "s";
+
+            return " every " + this.configuration.TimeFrecuency.ToString().Trim() + " " +
+                this.configuration.TimeFrecuencyType.ToString().ToLower() + Plural +
+                " between " + this.configuration.StartHour.Value.ToString() +
+                " and " + this.configuration.EndHour.Value.ToString();
         }
     }
 }
