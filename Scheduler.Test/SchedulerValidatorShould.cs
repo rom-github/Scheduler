@@ -136,6 +136,46 @@ namespace Scheduler.Test
 
             Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution());
         }
+
+        [Fact]
+        internal void Throws_Exception_On_TimeFrecuencyType_Null_And_TimeFrecuency_NotNull()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 10, 1),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 6),
+                EndDate = new DateTime(2001, 6, 6),
+                TimeFrecuency = 7
+            };
+
+            Processor Processor = new Processor(configuration);
+
+            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution());
+        }
+
+        [Fact]
+        internal void Throws_Exception_On_TimeFrecuencyType_NotNull_And_TimeFrecuency_Null()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 10, 1),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 6),
+                EndDate = new DateTime(2001, 6, 6),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour
+            };
+
+            Processor Processor = new Processor(configuration);
+
+            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution());
+        }
+
+
         #endregion
 
 

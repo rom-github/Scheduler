@@ -8,6 +8,48 @@ namespace Scheduler.Test
     {
         #region HOURS
         [Fact]
+        internal void Calculate_Recurring_Daily_Every_1_Time_Every_1_Without_StartHou_Nor_EndHour()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 6, 17, 13, 45, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 15),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 1
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 17, 14, 0, 0));
+            Assert.Equal("Occurs every day every hour between 00:00:00 and 23:59:59. Schedule will be used on 17/06/2000 14:00:00 starting on 15/06/2000", Result.Value.Description);
+        }
+
+        [Fact]
+        internal void Calculate_Recurring_Daily_Every_1_Time_Every_1_Hours_CurrentDate_Between_StartHour_And_EndHour()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 6, 17, 13, 45, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 15),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 1,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 17, 14, 0, 0));
+            Assert.Equal("Occurs every day every hour between 10:00:00 and 18:00:00. Schedule will be used on 17/06/2000 14:00:00 starting on 15/06/2000", Result.Value.Description);
+        }
+
+        [Fact]
         internal void Calculate_Recurring_Daily_Every_1_Time_Every_2_Hours_CurrentDate_Between_StartHour_And_EndHour()
         {
             Configuration configuration = new Configuration()
@@ -70,6 +112,48 @@ namespace Scheduler.Test
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 18, 10, 0, 0));
             Assert.Equal("Occurs every day every 2 hours between 10:00:00 and 18:00:00. Schedule will be used on 18/06/2000 10:00:00 starting on 15/06/2000", Result.Value.Description);
+        }
+        [Fact]
+        internal void Calculate_Recurring_Daily_Every_1_Time_Every_2_Hours_CurrentDate_After_EndHour_And_Next_Date_Is_Null()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 6, 17, 18, 0, 1),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2000, 6, 15),
+                EndDate = new DateTime(2000, 6, 18, 6, 0, 0),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 2,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
+        [Fact]
+        internal void Calculate_Recurring_Daily_Every_1_Time_Every_3_Hours_CurrentDate_After_EndHour_And_Next_Date_Is_Null()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 31, 19, 0, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Tuesday },
+                StartDate = new DateTime(9999, 12, 01),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 3,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
         }
         #endregion
 

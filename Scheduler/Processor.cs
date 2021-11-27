@@ -56,6 +56,16 @@ namespace Scheduler
 
             nextEventDate = this.SetEventHour(nextEventDate.Value);
 
+            if (nextEventDate.HasValue == false)
+            {
+                return null; 
+            }
+
+            if (nextEventDate.HasValue == false || nextEventDate > this.configuration.EndDate)
+            {
+                return null;
+            }
+
             return new Result(nextEventDate.Value, this.GetDescription(this.configuration.StartDate.Value, nextEventDate.Value));
         }
 
@@ -72,11 +82,6 @@ namespace Scheduler
                 case DateFrecuencyTypes.Weekly:
                     nextDate = GetWeeklyCalculation();
                     break;
-            }
-
-            if (nextDate.HasValue == false || nextDate > this.configuration.EndDate)
-            {
-                return null;
             }
 
             return nextDate;
@@ -140,11 +145,19 @@ namespace Scheduler
 
         private DateTime? GetNextEventDateInAWeek(DateTime? firstDayOfWeekEventDate)
         {
-            while (firstDayOfWeekEventDate.HasValue &&
-                (this.configuration.DaysOfWeek.Contains(firstDayOfWeekEventDate.Value.DayOfWeek) == false ||
-                firstDayOfWeekEventDate < this.configuration.CurrentDate.Value))
+            while (true)
 
             {
+                if (firstDayOfWeekEventDate.HasValue == false) { break; }
+
+                if (this.configuration.DaysOfWeek.Contains(firstDayOfWeekEventDate.Value.DayOfWeek))
+                {
+                    if (firstDayOfWeekEventDate >= this.configuration.CurrentDate.Value) { break; } }
+
+
+
+
+
                 firstDayOfWeekEventDate = firstDayOfWeekEventDate.Value.AddSecondsNullable(Processor.SecondsInADay);
             }
 
@@ -179,7 +192,12 @@ namespace Scheduler
 
             if (newEventDateTime > MaxHour)
             {
-                DateTime? nextEventDate = this.GetNextEventDate(MaxHour.AddDays(1));
+                if (MaxHour.Date == DateTime.MaxValue)
+                {
+                    return null;
+                }
+
+                DateTime? nextEventDate = this.GetNextEventDate(MaxHour.Date.AddDays(1));
                 if (nextEventDate.HasValue == false)
                 {
                     return null;
@@ -275,10 +293,21 @@ namespace Scheduler
                 return string.Empty;
             }
 
-            string Plural = this.configuration.TimeFrecuency == 1 ? string.Empty : "s";
+            string plural;
+            string numberFrecuency;
+            if (this.configuration.TimeFrecuency == 1)
+            {
+                plural = 
+                    numberFrecuency = string.Empty;
+            }
+            else
+            {
+                plural = "s";
+                numberFrecuency = " " + this.configuration.TimeFrecuency.ToString().Trim();
+            }
 
-            return " every " + this.configuration.TimeFrecuency.ToString().Trim() + " " +
-                this.configuration.TimeFrecuencyType.ToString().ToLower() + Plural +
+            return " every" + numberFrecuency + " " +
+                this.configuration.TimeFrecuencyType.ToString().ToLower() + plural +
                 " between " + this.configuration.StartHour.Value.ToString() +
                 " and " + this.configuration.EndHour.Value.ToString();
         }
