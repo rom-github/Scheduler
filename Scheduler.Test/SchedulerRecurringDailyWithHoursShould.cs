@@ -135,7 +135,68 @@ namespace Scheduler.Test
             Result.Should().Be(null);
         }
         [Fact]
-        internal void Calculate_Recurring_Daily_Every_1_Time_Every_3_Hours_CurrentDate_After_EndHour_And_Next_Date_Is_Null()
+        internal void Calculate_Recurring_Daily_Every_5_Time_Every_2_Hours_CurrentDate_After_EndHour_And_Next_Date_Is_Null()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2000, 6, 17, 18, 0, 1),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 5,
+                StartDate = new DateTime(2000, 6, 15),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 2,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 20, 10, 0, 0));
+            Assert.Equal("Occurs every 5 days every 2 hours between 10:00:00 and 18:00:00. Schedule will be used on 20/06/2000 10:00:00 starting on 15/06/2000", Result.Value.Description);
+        }
+        [Fact]
+        internal void Calculate_Recurring_Daily_Every_1_Time_Every_3_Hours_CurrentDate_Is_DateTimeMaxValue_And_Is_After_EndHour()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 31, 19, 0, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 1,
+                StartDate = new DateTime(9999, 12, 01),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 3,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
+        [Fact]
+        internal void Calculate_Recurring_Daily_Every_3_Time_Every_3_Hours_CurrentDate_Is_DateTimeMaxValue_And_Is_After_EndHour()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(9999, 12, 30, 19, 0, 0),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Daily,
+                DateFrecuency = 5,
+                StartDate = new DateTime(9999, 12, 20),
+                TimeFrecuencyType = TimeFrecuencyTypes.Hour,
+                TimeFrecuency = 3,
+                StartHour = new TimeSpan(10, 0, 0),
+                EndHour = new TimeSpan(18, 0, 0)
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Should().Be(null);
+        }
+        [Fact]
+        internal void Calculate_Recurring_Weekly_Every_1_Time_Every_3_Hours_CurrentDate_Is_DateTimeMaxValue_And_Is_After_EndHour()
         {
             Configuration configuration = new Configuration()
             {

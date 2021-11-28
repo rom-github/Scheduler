@@ -56,10 +56,6 @@ namespace Scheduler
 
             nextEventDate = this.SetEventHour(nextEventDate.Value);
 
-            if (nextEventDate.HasValue == false)
-            {
-                return null; 
-            }
 
             if (nextEventDate.HasValue == false || nextEventDate > this.configuration.EndDate)
             {
@@ -192,7 +188,7 @@ namespace Scheduler
 
             if (newEventDateTime > MaxHour)
             {
-                if (MaxHour.Date == DateTime.MaxValue)
+                if (MaxHour.Date == DateTime.MaxValue.Date)
                 {
                     return null;
                 }

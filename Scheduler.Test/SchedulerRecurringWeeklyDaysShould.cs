@@ -621,6 +621,27 @@ namespace Scheduler.Test
         }
         #endregion
 
+        #region CALCULATE EVERY 1 SUNDAY-WEDNESDAY
+        [Fact]
+        internal void Calculate_Recurring_Weekly_SunWed_Every_1_CurrentDate_Is_Before_Next_Event_Week_And_Next_Event_Week_Is_Next_Week()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2021, 11, 27),
+                PeriodicityMode = PeriodicityModes.Recurring,
+                DateFrecuencyType = DateFrecuencyTypes.Weekly,
+                DateFrecuency = 1,
+                StartDate = new DateTime(2021, 8, 1),
+                DaysOfWeek = new DayOfWeek[] { DayOfWeek.Sunday, DayOfWeek.Wednesday }
+            };
+
+            var Result = new Processor(configuration).GetNextExecution();
+
+            Result.Value.DateTime.Should().Be(new DateTime(2021, 11, 28));
+            Assert.Equal("Occurs every week on sunday and wednesday. Schedule will be used on 28/11/2021 starting on 01/08/2021", Result.Value.Description);
+        }
+        #endregion
+
         #region CALCULATE EXTREME CASES WITH DateTime.MaxValue
         [Fact]
         internal void Calculate_Recurring_Weekly_TueFri_Every_3_All_Dates_Are_Saturday_Close_To_MaxDate()
