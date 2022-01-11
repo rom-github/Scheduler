@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System;
 using Xunit;
 
@@ -10,17 +9,13 @@ namespace Scheduler.Test
         [Fact]
         internal void Throws_Exception_On_Null_Configuration()
         {
-            Processor Processor = new Processor(null);
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(null));
         }
 
         [Fact]
         internal void Throws_Exception_On_Null_Current_Date()
         {
-            Processor Processor = new Processor(new Configuration());
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(new Configuration()));
         }
         #endregion
 
@@ -34,9 +29,7 @@ namespace Scheduler.Test
                 PeriodicityMode = PeriodicityModes.Once
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(configuration));
         }
 
         #endregion
@@ -51,9 +44,7 @@ namespace Scheduler.Test
                 PeriodicityMode = PeriodicityModes.Recurring
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -66,9 +57,7 @@ namespace Scheduler.Test
                 DateFrecuencyType = DateFrecuencyTypes.Daily
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -82,9 +71,7 @@ namespace Scheduler.Test
                 DateFrecuency = 0
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -98,9 +85,7 @@ namespace Scheduler.Test
                 DateFrecuency = -1
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -114,9 +99,7 @@ namespace Scheduler.Test
                 DateFrecuency = 1
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentNullException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -132,9 +115,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 5)
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentOutOfRangeException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -151,9 +132,7 @@ namespace Scheduler.Test
                 TimeFrecuency = 7
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution(configuration));
         }
 
         [Fact]
@@ -170,9 +149,7 @@ namespace Scheduler.Test
                 TimeFrecuencyType = TimeFrecuencyTypes.Hour
             };
 
-            Processor Processor = new Processor(configuration);
-
-            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution());
+            Assert.Throws<ArgumentException>(() => Processor.GetNextExecution(configuration));
         }
 
 

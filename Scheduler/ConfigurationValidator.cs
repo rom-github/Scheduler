@@ -2,24 +2,24 @@
 
 namespace Scheduler
 {
-    public class ConfigurationValidator
+    public static class ConfigurationValidator
     {
-        public void Validate(Configuration configuration)
+        public static void Validate(Configuration configuration)
         {
-            this.ValidateCommon(configuration);
+            ConfigurationValidator.ValidateCommon(configuration);
 
             if (configuration.PeriodicityMode == PeriodicityModes.Once)
             {
-                this.ValidateOnce(configuration);
+                ConfigurationValidator.ValidateOnce(configuration);
             }
 
             if (configuration.PeriodicityMode == PeriodicityModes.Recurring)
             {
-                this.ValidateRecurring(configuration);
+                ConfigurationValidator.ValidateRecurring(configuration);
             }
         }
 
-        private void ValidateCommon(Configuration configuration)
+        private static void ValidateCommon(Configuration configuration)
         {
             if (configuration == null)
             {
@@ -32,7 +32,7 @@ namespace Scheduler
             }
         }
 
-        private void ValidateOnce(Configuration configuration)
+        private static void ValidateOnce(Configuration configuration)
         {
             if (configuration.EventDate == null)
             {
@@ -40,7 +40,7 @@ namespace Scheduler
             }
         }
 
-        private void ValidateRecurring(Configuration configuration)
+        private static void ValidateRecurring(Configuration configuration)
         {
 
             if (configuration.DateFrecuencyType == null)
@@ -68,10 +68,10 @@ namespace Scheduler
                 throw new ArgumentOutOfRangeException("EndDate", configuration.EndDate, Messages.End_Date_Must_Be_Greater_Than_Start_Date);
             }
 
-            this.ValidateHoursConfiguration(configuration);
+            ConfigurationValidator.ValidateHoursConfiguration(configuration);
         }
 
-        private void ValidateHoursConfiguration(Configuration configuration)
+        private static void ValidateHoursConfiguration(Configuration configuration)
         {
             if (configuration.TimeFrecuencyType.HasValue && configuration.TimeFrecuency.HasValue)
             {

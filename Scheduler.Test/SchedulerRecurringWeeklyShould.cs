@@ -19,7 +19,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 15)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
             Assert.Equal("Occurs every week. Schedule will be used on 15/06/2000 starting on 15/06/2000", Result.Value.Description);
@@ -38,7 +38,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 15),
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 15));
             Assert.Equal("Occurs every week. Schedule will be used on 15/06/2000 starting on 15/06/2000", Result.Value.Description);
@@ -56,7 +56,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 16)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
             Assert.Equal("Occurs every week. Schedule will be used on 16/06/2000 starting on 16/06/2000", Result.Value.Description);
@@ -75,7 +75,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 17),
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 16));
             Assert.Equal("Occurs every week. Schedule will be used on 16/06/2000 starting on 16/06/2000", Result.Value.Description);
@@ -93,7 +93,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 14)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 21));
             Assert.Equal("Occurs every week. Schedule will be used on 21/06/2000 starting on 14/06/2000", Result.Value.Description);
@@ -112,7 +112,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 15)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Should().Be(null);
         }
@@ -130,7 +130,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 21)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 21));
             Assert.Equal("Occurs every week. Schedule will be used on 21/06/2000 starting on 14/06/2000", Result.Value.Description);
@@ -148,7 +148,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 12)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 19));
             Assert.Equal("Occurs every week. Schedule will be used on 19/06/2000 starting on 12/06/2000", Result.Value.Description);
@@ -167,7 +167,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 14),
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Should().Be(null);
         }
@@ -186,7 +186,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 7)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 7));
             Assert.Equal("Occurs every 3 weeks. Schedule will be used on 07/06/2000 starting on 07/06/2000", Result.Value.Description);
@@ -204,7 +204,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 7)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 7));
             Assert.Equal("Occurs every 3 weeks. Schedule will be used on 07/06/2000 starting on 07/06/2000", Result.Value.Description);
@@ -222,7 +222,7 @@ namespace Scheduler.Test
                 StartDate = new DateTime(2000, 6, 7)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 28));
             Assert.Equal("Occurs every 3 weeks. Schedule will be used on 28/06/2000 starting on 07/06/2000", Result.Value.Description);
@@ -241,7 +241,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 27)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Should().Be(null);
         }
@@ -259,7 +259,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 28)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 28));
             Assert.Equal("Occurs every 3 weeks. Schedule will be used on 28/06/2000 starting on 07/06/2000", Result.Value.Description);
@@ -278,7 +278,7 @@ namespace Scheduler.Test
                 EndDate = new DateTime(2000, 6, 29)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 6, 28));
             Assert.Equal("Occurs every 3 weeks. Schedule will be used on 28/06/2000 starting on 07/06/2000", Result.Value.Description);

@@ -16,7 +16,7 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 1)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 1));
             Assert.Equal("Occurs once. Schedule will be used on 01/01/2000 starting on 01/01/2000", Result.Value.Description);
@@ -32,7 +32,7 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 1)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Should().Be(null);
         }
@@ -47,7 +47,7 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 2)
             };
 
-            var Result = new Processor(configuration).GetNextExecution();
+            var Result = Processor.GetNextExecution(configuration);
 
             Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 2));
             Assert.Equal("Occurs once. Schedule will be used on 02/01/2000 starting on 02/01/2000", Result.Value.Description);
