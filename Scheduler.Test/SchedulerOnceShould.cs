@@ -16,10 +16,10 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 1)
             };
 
-            var Result = Processor.GetNextExecution(configuration);
+            var result = Processor.GetNextExecution(configuration);
 
-            Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 1));
-            Assert.Equal("Occurs once. Schedule will be used on 01/01/2000 starting on 01/01/2000", Result.Value.Description);
+            result.Value.DateTime.Should().Be(new DateTime(2000, 1, 1));
+            Assert.Equal("Occurs once. Schedule will be used on 01/01/2000 starting on 01/01/2000", result.Value.Description);
         }
 
         [Fact]
@@ -32,9 +32,9 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 1)
             };
 
-            var Result = Processor.GetNextExecution(configuration);
+            var result = Processor.GetNextExecution(configuration);
 
-            Result.Should().Be(null);
+            result.Should().Be(null);
         }
 
         [Fact]
@@ -47,10 +47,30 @@ namespace Scheduler.Test
                 EventDate = new DateTime(2000, 1, 2)
             };
 
-            var Result = Processor.GetNextExecution(configuration);
+            var result = Processor.GetNextExecution(configuration);
 
-            Result.Value.DateTime.Should().Be(new DateTime(2000, 1, 2));
-            Assert.Equal("Occurs once. Schedule will be used on 02/01/2000 starting on 02/01/2000", Result.Value.Description);
+            result.Value.DateTime.Should().Be(new DateTime(2000, 1, 2));
+            Assert.Equal("Occurs once. Schedule will be used on 02/01/2000 starting on 02/01/2000", result.Value.Description);
         }
+
+
+        #region Several Events
+
+        [Fact]
+        internal void Calculate_Once_Common_Case_Testing_Several_Events()
+        {
+            Configuration configuration = new Configuration()
+            {
+                CurrentDate = new DateTime(2022, 02, 02),
+                PeriodicityMode = PeriodicityModes.Once,
+                EventDate = new DateTime(2024, 04, 04)
+            };
+
+            var result = Processor.GetSeveralEvents(configuration, 12);
+
+            result.Length.Should().Be(1);
+            result[0].Value.DateTime.Value.Should().Be(new DateTime(2024, 04, 04));
+        }
+        #endregion
     }
 }

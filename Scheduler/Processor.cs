@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -21,6 +22,35 @@ namespace Scheduler
                 return Processor.CalculateNextExecutionOnce(configuration);
             }
             return Processor.CalculateNextExecutionRecurring(configuration);
+        }
+        public static Result?[] GetSeveralEvents(Configuration configuration, int repetitionsNumber)
+        {
+            ConfigurationValidator.Validate(configuration);
+
+            List<Result?> ResultList = new List<Result?>();
+            if (configuration.PeriodicityMode == PeriodicityModes.Once)
+            {
+                repetitionsNumber = 1;
+            }
+
+            Result? auxResult;
+            int i = 0;
+            while (i < repetitionsNumber)
+            {
+                auxResult = Processor.GetNextExecution(configuration);
+                ResultList.Add(auxResult);
+
+                if (auxResult == null) { break; }
+
+                if (auxResult.HasValue && auxResult.Value.DateTime.HasValue)
+                {
+                    configuration.CurrentDate = configuration.TimeFrecuencyType.HasValue
+                        ? auxResult.Value.DateTime.Value.AddSeconds(1)
+                        : auxResult.Value.DateTime.Value.AddDays(1);
+                }
+                i++;
+            }
+            return ResultList.ToArray();
         }
 
         private static Result? CalculateNextExecutionOnce(Configuration configuration)
